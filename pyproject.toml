@@ -3,6 +3,10 @@ requires = ["flit_core >=3.2,<4"]
 build-backend = "flit_core.buildapi"
 
 [project]
-name = "lumache"
-authors = [{name = "Graziella", email = "graziella@lumache"}]
+name = "Workflomics"
+authors = [{name = "Vedran Kasalica", email = "v.kasalica@esciencecenter.nl"},
+            {name = "Nauman Ahmed", email = "n.ahmed@esciencecenter.nl"},
+            {name = "Peter Kok", email = "p.kok@esciencecenter.nl"},
+            {name = "Anna-Lena Lamprecht", email = "anna-lena.lamprecht@uni-potsdam.de"},
+            {name = "Magnus Palmblad", email = "n.m.palmblad@lumc.nl"}]
 dynamic = ["version", "description"]
