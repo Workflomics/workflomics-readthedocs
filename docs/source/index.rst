@@ -19,7 +19,7 @@ Contents
 
    installation
    web-interface
-   benchmarking
+   benchmarker
    .. usage-examples
    advanced-features
    faq
@@ -36,25 +36,25 @@ Getting Started
 Benchmarking Workflows
 ----------------------
 
-- **Benchmarking**: Detailed instructions on how to benchmark computational workflows using Workflomics, including requirements and step-by-step guides.
+- **Benchmarker**: Detailed instructions on how to benchmark computational workflows using Workflomics, including requirements and step-by-step guides.
 
-Usage Examples
---------------
+.. Usage Examples
+.. --------------
 
-- **Usage Examples**: Practical examples and tutorials on using Workflomics for your research projects.
+.. - **Usage Examples**: Practical examples and tutorials on using Workflomics for your research projects.
 
-Advanced Features
------------------
+.. Advanced Features
+.. -----------------
 
-- **Advanced Features**: Explore the advanced functionalities offered by Workflomics to enhance your workflow generation and analysis processes.
+.. - **Advanced Features**: Explore the advanced functionalities offered by Workflomics to enhance your workflow generation and analysis processes.
 
-Support
--------
+.. Support
+.. -------
 
-- **FAQ**: Answers to frequently asked questions about Workflomics.
-- **Troubleshooting**: Common issues and their solutions.
-- **Contributing**: Guidelines on how to contribute to the Workflomics project.
-- **Contact**: How to reach out for support or inquiries.
+.. - **FAQ**: Answers to frequently asked questions about Workflomics.
+.. - **Troubleshooting**: Common issues and their solutions.
+.. - **Contributing**: Guidelines on how to contribute to the Workflomics project.
+.. - **Contact**: How to reach out for support or inquiries.
 
 .. note::
 
