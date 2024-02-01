@@ -85,13 +85,13 @@ Once you have workflows downloaded from Worklomics:
 
    .. code-block:: bash
 
-      workflomics-benchmark .
+      workflomics benchmark .
 
    - To benchmark in a different directory:
 
    .. code-block:: bash
 
-      workflomics-benchmark path-to-dir
+      workflomics benchmark path-to-dir
 
 .. note:: Replace `path-to-dir` with the actual path to the directory containing your Worklomics workflows.
 
