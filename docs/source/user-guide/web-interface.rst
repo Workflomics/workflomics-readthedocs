@@ -68,7 +68,7 @@ Specify Search Parameters
 
 Adjusting search parameters enables you to fine-tune the workflow generation process, influencing how Workflomics explores the vast space of possible workflows.
 
-.. figure:: ./screenshots/parameters.png
+.. figure:: ./screenshots/config.png
    :align: center
    :alt: Workflow generation parameters
 
