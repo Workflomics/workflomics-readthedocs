@@ -6,8 +6,8 @@ project = 'Workflomics'
 copyright = '2024, Kasalica'
 author = 'Kasalica, Ahmed, Kok, Lamprecht, Palmblad'
 
-release = '0.1'
-version = '0.1.1'
+release = '0.2.0'
+version = '0.2.0'
 
 # -- General configuration
 
