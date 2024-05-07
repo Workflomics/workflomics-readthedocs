@@ -79,7 +79,7 @@ After benchmarking, upload your results to the Workflomics platform for interact
 3. Access interactive visualizations to explore the benchmark results comprehensively.
 
 
-.. figure:: ./screenshots/runtime-benchmarks.png
+.. figure:: ../user-guide/screenshots/runtime-benchmarks.png
    :align: center
    :alt: Benchmark results visualization
 
