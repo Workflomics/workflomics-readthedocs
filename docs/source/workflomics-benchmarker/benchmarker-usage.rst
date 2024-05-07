@@ -1,5 +1,5 @@
-Use Workflomics Benchmarker
-===========================
+Benchmark Workflows
+===================
 
 This documentation provides instructions on how to execute and benchmark workflows generated on the Workflomics platform, using the Workflomics Benchmarker CLI.
 

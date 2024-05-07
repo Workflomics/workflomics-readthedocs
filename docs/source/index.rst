@@ -21,7 +21,7 @@ Contents
 
 .. toctree::
    :maxdepth: 2
-   :caption: Execute and Benchmark Workflows
+   :caption: Benchmark Workflows
 
    workflomics-benchmarker/benchmarker-overview
    workflomics-benchmarker/benchmarker-installation
