@@ -15,33 +15,23 @@ Contents
 
 .. toctree::
    :maxdepth: 2
-   :caption: Basics
-
-   basics/installation
-
-.. toctree::
-   :maxdepth: 2
    :caption: User Guide
 
    user-guide/web-interface
 
 .. toctree::
    :maxdepth: 2
-   :caption: Workflomics benchmarker
+   :caption: Workflomics Benchmarker
 
-   workflomics-benchmarker/benchmarker
+   workflomics-benchmarker/benchmarker-overview
+   workflomics-benchmarker/benchmarker-installation
+   workflomics-benchmarker/benchmarker-usage
+   
+.. toctree::
+   :maxdepth: 2
+   :caption: Developer Guide
 
-Getting Started
----------------
-
-- **Installation**: Learn how to set up Workflomics on your local machine or server.
-- **Web Interface**: An overview of the Workflomics web interface and how to use it for workflow generation and comparison.
-
-Benchmarking Workflows
-----------------------
-
-- **Benchmarker**: Detailed instructions on how to benchmark computational workflows using Workflomics, including requirements and step-by-step guides.
-
+   basics/installation
 
 .. note::
 
