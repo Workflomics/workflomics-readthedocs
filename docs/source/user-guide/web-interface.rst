@@ -106,7 +106,7 @@ After Workflomics has generated a list of candidate workflows, the next step is 
 
 For detailed instructions on how to benchmark workflows locally, including setting up your environment and running the benchmarking tool, please refer to the dedicated section in our documentation:
 
-- **Benchmarking Workflows Locally**: See the `Workflomics Benchmarker <https://workflomics.readthedocs.io/en/latest/benchmarker.html/>`_ for comprehensive guidelines on local benchmarking practices. This document provides step-by-step instructions to help you effectively evaluate the candidate workflows on your system.
+- **Benchmarking Workflows Locally**: See the `Workflomics Benchmarker <https://workflomics.readthedocs.io/en/latest/workflomics-benchmarker/benchmarker-overview.html>`_ for comprehensive guidelines on local benchmarking practices. This document provides step-by-step instructions to help you effectively evaluate the candidate workflows on your system.
 
 This step is essential for ensuring that the workflows you choose are not only theoretically sound but also practically viable for your research projects.
 

@@ -1,7 +1,7 @@
 Use Benchmarker
 ===============
 
-This documentation provides instructions on how to execute and benchmark workflows generated on the Workflomics platform, using the `Workflomics Benchmarker<https://github.com/Workflomics/workflomics-benchmarker>`_ CLI.
+This documentation provides instructions on how to execute and benchmark workflows generated on the Workflomics platform, using the `Workflomics Benchmarker <https://github.com/Workflomics/workflomics-benchmarker>`_ CLI.
 
 
 Running Workflows
@@ -9,7 +9,7 @@ Running Workflows
 
 To run the Workflomics workflows:
 
-1. Download workflows that were generated on the `Workflomics website<workflomics.org>`_` (using the "Download selected" button), and unzip them.
+1. Download workflows that were generated on the `Workflomics website <workflomics.org>`_` (using the "Download selected" button), and unzip them.
 
 2. Navigate to the folder containing the unzipped workflows.
 
