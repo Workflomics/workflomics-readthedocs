@@ -1,5 +1,5 @@
-Installation Guide
-==================
+Deployment
+==========
 
 This guide outlines the steps to install and deploy the Workflomics web platform, a comprehensive solution implemented in TypeScript for bioinformatics workflow benchmarking.
 
