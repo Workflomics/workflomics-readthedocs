@@ -1,7 +1,7 @@
-Run Benchmarking
-================
+Use Benchmarker
+===============
 
-This documentation provides instructions on how to execute and benchmark workflows generated on the Workflomics platform, using the Workflomics Benchmarker CLI.
+This documentation provides instructions on how to execute and benchmark workflows generated on the Workflomics platform, using the `Workflomics Benchmarker<https://github.com/Workflomics/workflomics-benchmarker>`_ CLI.
 
 
 Running Workflows
@@ -9,7 +9,7 @@ Running Workflows
 
 To run the Workflomics workflows:
 
-1. Download workflows that were generated on the Workflomics website (using the "Download selected" button), and unzip them.
+1. Download workflows that were generated on the `Workflomics website<workflomics.org>`_` (using the "Download selected" button), and unzip them.
 
 2. Navigate to the folder containing the unzipped workflows.
 
@@ -26,6 +26,53 @@ To run the Workflomics workflows:
       workflomics benchmark path-to-dir
 
 .. note:: Replace `path-to-dir` with the actual path to the directory containing your Workflomics workflows.
+
+
+Command Line Interface
+^^^^^^^^^^^^^^^^^^^^^^
+
+The `Workflomics Benchmarker` CLI provides the following commands (Docker is used by default for benchmarking):
+
+- `workflomics benchmark <path>`: Benchmark workflows in the specified directory (use `.` for the current directory).
+- `workflomics benchmark --help`: Display help information for the benchmark command.
+- `workflomics benchmark --verbose`: Display verbose output during benchmarking.
+- `workflomics benchmark --singularity`: Use Singularity containers for benchmarking instead of Docker.
+- `workflomics run <path>`: Run workflows in the specified directory without benchmarking.
+- `workflomics run --help`: Display help information for the run command.
+
+Workflomics Benchmarker CLI
+===========================
+
+The **Workflomics Benchmarker** CLI utilizes Docker by default for benchmarking and provides the following commands:
+
+**Commands:**
+
+- **Benchmarking Workflows**
+
+  .. code-block:: console
+
+     $ workflomics benchmark <path>
+     # Benchmark workflows in the specified directory. Use '.' for the current directory.
+
+     $ workflomics benchmark --help
+     # Display help information for the benchmark command.
+
+     $ workflomics benchmark --verbose
+     # Display verbose output during benchmarking.
+
+     $ workflomics benchmark --singularity
+     # Use Singularity containers for benchmarking instead of Docker.
+
+- **Running Workflows**
+
+  .. code-block:: console
+
+     $ workflomics run <path>
+     # Run workflows in the specified directory without benchmarking.
+
+     $ workflomics run --help
+     # Display help information for the run command.
+
 
 Visualizing Benchmark Results
 -----------------------------
