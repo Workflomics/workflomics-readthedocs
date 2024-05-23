@@ -1,5 +1,5 @@
 Use Benchmarker
-===============
+###############
 
 This documentation provides instructions on how to execute and benchmark workflows generated on the Workflomics platform, using the `Workflomics Benchmarker <https://github.com/Workflomics/workflomics-benchmarker>`_ CLI.
 
@@ -8,7 +8,7 @@ If you have not already generated workflows on the Workflomics platform, please 
 In addition, please ensure that you have followed the `installation instructions <https://workflomics.readthedocs.io/en/latest/workflomics-benchmarker/benchmarker-installation.html>`_ to install the Workflomics Benchmarker CLI.
 
 Running Workflows
------------------
+*****************
 
 To run the Workflomics workflows:
 
@@ -26,7 +26,7 @@ To run the Workflomics workflows:
 
    .. code-block:: bash
 
-      workflomics benchmark <path-to-dir> --singularity
+      workflomics benchmark <path-to-dir> **singularity
 
 .. note:: Replace <path-to-dir> with the actual path to the directory containing your Workflomics workflows. 
 
@@ -37,14 +37,14 @@ To run the Workflomics workflows:
 
 
 Command Line Interface (CLI)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+============================
 
 The Workflomics Benchmarker CLI provides a set of commands to benchmark and run workflows generated on the Workflomics platform. This section provides an overview of the available commands and their usage.
 
 Get a list of available CLI commands for Workflomics Benchmarker::
 
-  $ workflomics benchmark --help
-  $ workflomics run --help
+  $ workflomics benchmark **help
+  $ workflomics run **help
 
 
 Commands for benchmarking workflows::
@@ -52,10 +52,10 @@ Commands for benchmarking workflows::
   $ workflomics benchmark <path>
   # Benchmark workflows in the specified directory. Use '.' for the current directory.
 
-  $ workflomics benchmark --verbose <path>
+  $ workflomics benchmark **verbose <path>
   # Display verbose output during benchmarking.
 
-  $ workflomics benchmark --singularity <path>
+  $ workflomics benchmark **singularity <path>
   # Use Singularity containers for benchmarking instead of Docker.
 
 Commands for running workflows without benchmarking::
@@ -66,7 +66,7 @@ Commands for running workflows without benchmarking::
 
 
 Visualizing Benchmark Results
------------------------------
+*****************************
 
 After benchmarking, upload your results to the Workflomics platform for interactive visualization:
 
