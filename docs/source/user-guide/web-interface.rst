@@ -1,10 +1,11 @@
+*************
 Web Interface
-=============
+*************
 
 This section guides you through the process of using Workflomics, from accessing the platform to generating and benchmarking workflows. Workflomics offers an intuitive web interface that enables users to efficiently create, compare, and optimize computational workflows for bioinformatics research.
 
 Accessing Workflomics
----------------------
+=====================
 
 To begin exploring the capabilities of Workflomics, visit the live demo:
 
@@ -13,12 +14,12 @@ To begin exploring the capabilities of Workflomics, visit the live demo:
 Here, you will find a user-friendly interface designed to facilitate the generation of workflows tailored to your research needs.
 
 Generate Workflows
-------------------
+==================
 
 Generating workflows with Workflomics involves several key steps, each designed to ensure that the workflows you create are optimally configured for your specific data analysis requirements.
 
 Explore
-~~~~~~~
+-------
 
 The first step in generating workflows is choose "Explore" from the home menu. This will take you to the workflow generation interface, where you can specify the domain of your research and the desired inputs and outputs.
 
@@ -29,7 +30,7 @@ The first step in generating workflows is choose "Explore" from the home menu. T
    Home page of the Workflomics web interface. The "Explore" option allows you to specify the domain of your research and the desired inputs and outputs.
 
 Choose the Domain
-~~~~~~~~~~~~~~~~~
+-----------------
 
 The first step in generating workflows is to select the domain of your research. Workflomics currently supports only the proteomics domain. By specifying the domain, you can focus the workflow generation process on the most relevant tools and methods for your research.
 
@@ -41,7 +42,7 @@ The first step in generating workflows is to select the domain of your research.
 
 
 Choose Workflow Inputs and Outputs
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-----------------------------------
 
 Before generating workflows, you must specify the desired inputs and outputs. This initial step is crucial as it defines the scope and objectives of the computational task. Example inputs Mass spectrum in mzML format, and Protein sequence in FASTA format. Output: any type of data in protXML format.
 
@@ -52,7 +53,7 @@ Before generating workflows, you must specify the desired inputs and outputs. Th
    Web interface for specifying the available workflow inputs and desired workflow outputs. Each input and output is specified as a pair of data type and format (using EDAM Ontology terms). The example specifies two inputs, a "Mass spectrum in mzML format" and a "Protein sequence in FASTA format", and the desired output as "any type of data in protXML format".
 
 Specify Constraints
-~~~~~~~~~~~~~~~~~~~
+-------------------
 
 Constraints allow you to narrow down the search for workflows by setting specific requirements, such as computational resources, runtime, or data formats.
 
@@ -64,7 +65,7 @@ Constraints allow you to narrow down the search for workflows by setting specifi
 
 
 Specify Search Parameters
-~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------
 
 Adjusting search parameters enables you to fine-tune the workflow generation process, influencing how Workflomics explores the vast space of possible workflows.
 
@@ -75,7 +76,7 @@ Adjusting search parameters enables you to fine-tune the workflow generation pro
    Web interface for specifying search parameters for the workflow generation process. These parameters influence how Workflomics explores the space of possible workflows. The parameters include the maximum number of steps in the workflow, the runtime, and the number of workflows to generate.
 
 Explore Generated Workflows
-~~~~~~~~~~~~~~~~~~~~~~~~~~~
+---------------------------
 
 Once you have specified the domain, inputs, outputs, constraints, and search parameters, Workflomics will generate a list of candidate workflows that meet your criteria. You can then explore these workflows to identify the most promising options for your research.
 
@@ -97,7 +98,7 @@ In addition to visualizing the workflows, a design-time analysis of each workflo
 
 
 Pick Candidate Workflows and Run Them Locally
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+----------------------------------------------
 
 After Workflomics has generated a list of candidate workflows, the next step is to evaluate these workflows to determine which ones best meet your research objectives. This involves selecting promising workflows based on the criteria you have set and running them on your local machine.
 
@@ -109,12 +110,12 @@ For detailed instructions on how to benchmark workflows locally, including setti
 This step is essential for ensuring that the workflows you choose are not only theoretically sound but also practically viable for your research projects.
 
 Upload Benchmark Results
-------------------------
+========================
 
 After executing and analyzing the workflows, uploading the benchmark results to Workflomics not only facilitates the comparison of efficiency and effectiveness across different workflow configurations but also unlocks the potential for visual analytics. This step is pivotal in harnessing the collective intelligence of the Workflomics community to refine and enhance bioinformatics workflows.
 
 Steps for Uploading Benchmark Results
-~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-------------------------------------
 
 1. **Navigate to the Upload Interface**: Access the Workflomics upload page dedicated to benchmark results at `Workflomics Benchmarks Upload <http://145.38.190.48/benchmarks>`_. 
 
