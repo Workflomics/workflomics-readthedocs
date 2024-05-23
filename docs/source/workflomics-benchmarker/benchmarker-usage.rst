@@ -26,7 +26,7 @@ To run the Workflomics workflows:
 
    .. code-block:: bash
 
-      workflomics benchmark <path-to-dir> **singularity
+      workflomics benchmark <path-to-dir>--singularity
 
 .. note:: Replace <path-to-dir> with the actual path to the directory containing your Workflomics workflows. 
 
@@ -43,8 +43,8 @@ The Workflomics Benchmarker CLI provides a set of commands to benchmark and run 
 
 Get a list of available CLI commands for Workflomics Benchmarker::
 
-  $ workflomics benchmark **help
-  $ workflomics run **help
+  $ workflomics benchmark--help
+  $ workflomics run--help
 
 
 Commands for benchmarking workflows::
@@ -52,10 +52,10 @@ Commands for benchmarking workflows::
   $ workflomics benchmark <path>
   # Benchmark workflows in the specified directory. Use '.' for the current directory.
 
-  $ workflomics benchmark **verbose <path>
+  $ workflomics benchmark--verbose <path>
   # Display verbose output during benchmarking.
 
-  $ workflomics benchmark **singularity <path>
+  $ workflomics benchmark--singularity <path>
   # Use Singularity containers for benchmarking instead of Docker.
 
 Commands for running workflows without benchmarking::
