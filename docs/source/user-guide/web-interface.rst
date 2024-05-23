@@ -155,6 +155,8 @@ Steps for Uploading Benchmark Results
 
 Upon successful upload, you will gain access to Workflomics' tablular visualization of the benchmark results, enabling you to compare the performance of different workflows.
 
+Analyzing Benchmark Results
+---------------------------
 
 Each workflow benchmark result is presented as a row in the table, with columns representing individual benchmarks. The workflows can be further expanded to reveal detailed information about the tools and operations involved.
 
@@ -166,3 +168,22 @@ Each workflow benchmark result is presented as a row in the table, with columns 
 
    
 The workflows can be further expanded to reveal detailed information about the tools and operations involved. In the example, candidate workflows 1 and 2 are expanded to show the information about each tool and operation involved in the workflow. We can see that all the tools in the first workflow are executed successfully, while the second workflow has failed to execute the second tool "idconvert".
+
+
+The benchmark results are divided into two categories: **Run-time benchmarks** and **Scientific benchmarks**. 
+
+Run-time benchmarks
+^^^^^^^^^^^^^^^^^^^
+
+The run-time benchmarks are computed for each workflow and include the following metrics:
+
+- **Execution Status**: The execution status of the workflow indicates whether the workflow was successfully executed or encountered errors. This information is crucial for users to determine whether the tools comprising the workflow are compatible and functional. The execution status is provided at both the tool and workflow levels, with the workflow level aggregating the execution status of all tools in the workflow.
+- **Execution Time**: The execution time of the workflow indicates the time taken to complete the workflow execution. This information reflects the efficiency and performance of the workflows. The execution time is provided at both the tool and workflow levels, with the workflow level aggregating the execution time of all tools in the workflow.
+- **Memory Consumption**: The RAM consumption per tool indicates the amount of memory used by each tool during workflow execution. This information reflects the resource requirements of the workflows. The memory consumption is provided at both the tool and workflow levels, with the workflow level aggregating the memory consumption of all tools in the workflow.
+- **Errors**: The number of errors encountered during workflow execution indicates the reliability and stability of the workflows. The number of errors, and their content, are provided at both the tool and workflow levels, with the workflow level aggregating the number of errors encountered by all tools in the workflow.
+- **Warnings**: The number of warnings encountered during workflow execution indicates potential issues or inefficiencies in the workflows. The number of warnings, and their content, are provided at both the tool and workflow levels, with the workflow level aggregating the number of warnings encountered by all tools in the workflow.
+
+Scientific benchmarks
+^^^^^^^^^^^^^^^^^^^^^
+
+The scientific benchmarks are domain- and operation-specific. For instance, in workflows involving *protein identification*, we provide benchmarks such as the number of proteins identified (see column Proteins). Similarly, for workflows that perform *enrichment analysis*, we measure the number of GO terms identified (see column GO-Terms). Unlike run-time benchmarks, scientific benchmarks are tailored to specific tools and their unique functions within the workflow. The provided figures do not include scientific benchmarks, however, they are available in the live demo.
