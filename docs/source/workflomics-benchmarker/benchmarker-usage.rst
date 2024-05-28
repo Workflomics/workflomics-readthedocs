@@ -1,5 +1,5 @@
 Use Benchmarker
-===============
+###############
 
 This documentation provides instructions on how to execute and benchmark workflows generated on the Workflomics platform, using the `Workflomics Benchmarker <https://github.com/Workflomics/workflomics-benchmarker>`_ CLI.
 
@@ -8,7 +8,7 @@ If you have not already generated workflows on the Workflomics platform, please 
 In addition, please ensure that you have followed the `installation instructions <https://workflomics.readthedocs.io/en/latest/workflomics-benchmarker/benchmarker-installation.html>`_ to install the Workflomics Benchmarker CLI.
 
 Running Workflows
------------------
+*****************
 
 To run the Workflomics workflows:
 
@@ -37,7 +37,7 @@ To run the Workflomics workflows:
 
 
 Command Line Interface (CLI)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+============================
 
 The Workflomics Benchmarker CLI provides a set of commands to benchmark and run workflows generated on the Workflomics platform. This section provides an overview of the available commands and their usage.
 
@@ -66,7 +66,7 @@ Commands for running workflows without benchmarking::
 
 
 Visualizing Benchmark Results
------------------------------
+*****************************
 
 After benchmarking, upload your results to the Workflomics platform for interactive visualization:
 

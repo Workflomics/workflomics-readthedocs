@@ -3,7 +3,7 @@
 # -- Project information
 
 project = 'Workflomics'
-copyright = '2024, Kasalica'
+copyright = '2024, Workflomics'
 author = 'Kasalica, Ahmed, Kok, Lamprecht, Palmblad'
 
 release = '0.2.0'
