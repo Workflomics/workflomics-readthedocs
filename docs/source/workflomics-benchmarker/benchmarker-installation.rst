@@ -74,7 +74,7 @@ Docker supports containerized environments:
 
    .. code-block:: bash
 
-      docker--version
+      docker --version
 
 Installing Singularity/Apptainer
 ================================

@@ -58,7 +58,7 @@ Deployment
 
      .. code-block:: bash
 
-        docker compose--env-file .env up -d
+        docker compose --env-file .env up -d
 
    - To remove the containers, run:
 
