@@ -10,7 +10,7 @@ The `Workflomics Benchmarker <https://github.com/Workflomics/workflomics-benchma
 The Workflomics Benchmarker generates a report containing performance metrics such as execution time, memory usage, and CPU usage for each workflow step, as well as scientific metrics (currently supporting proteomics domain) such as number of proteins identified, number of peptides identified, etc.
 
 
-Benchmarker relies on `cwltool <https://pypi.org/project/cwltool/>`_ to execute the workflows. The tool is written in Python and can be installed using :code:`pip pip install workflomics-benchmarker`.
+Benchmarker relies on `cwltool <https://pypi.org/project/cwltool/>`_ to execute the workflows. The tool is written in Python and can be installed using :code:`pip install workflomics-benchmarker`.
 
 
 License
