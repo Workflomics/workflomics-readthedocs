@@ -7,7 +7,7 @@ This section guides you through the process of using Workflomics, from accessing
 Accessing Workflomics
 *********************
 
-To begin exploring the capabilities of Workflomics, you can deploy your own instance of Workflomics (see the intructions) or visit the live demo:
+To begin exploring the capabilities of Workflomics, you can deploy your own instance of Workflomics (see the `intructions <https://workflomics.readthedocs.io/en/update_tutorial/basics/installation.html>`_) or visit the demo:
 
 - **Live Demo**: `Workflomics Live Demo <http://145.38.190.48/>`_
 
@@ -47,10 +47,7 @@ The first step in generating workflows is to select the domain of your research.
 Choose Workflow Inputs and Outputs
 ===================================
 
-Before generating workflows, you must specify the desired inputs and outputs. This initial step is crucial as it defines the scope and objectives of the computational task. Each input and output is defined as a pair of data type and format, using EDAM Ontology terms (see `EDAM Ontology <https://edamontology.github.io/edam-browser/#data_0006>`_). The data types and formats provided in workflomics are tailored to the proteomics domain and the available tools, therefore, the user can only select types and formats that are supported by the tools in the proteomics domain.
-
-To load the example inputs and outputs, click on the "Load Example" button.
-Example inputs Mass spectrum in mzML format, and Protein sequence in FASTA format. Output: any type of data in protXML format.
+Before generating workflows, you must specify the desired inputs and outputs. This initial step is crucial as it defines the scope and objectives of the computational task. Each *input* and *output* is defined as a pair of data **type** and **format**, using EDAM Ontology terms (see `EDAM Ontology <https://edamontology.github.io/edam-browser/#data_0006>`_). The data types and formats provided in workflomics are tailored to the proteomics domain and the available tools, therefore, the user can only select types and formats that are supported by the tools in the proteomics domain.
 
 .. figure:: ./screenshots/inputs.png
    :align: center
@@ -58,12 +55,14 @@ Example inputs Mass spectrum in mzML format, and Protein sequence in FASTA forma
 
    Web interface for specifying the available workflow inputs and desired workflow outputs. 
 
-Each input and output is specified as a pair of data type and format (using EDAM Ontology terms). The example specifies two inputs, a "Mass spectrum in mzML format" and a "Protein sequence in FASTA format", and the desired output as "any type of data in protXML format".
+To load the example inputs and outputs, click on the "Load Example" button. The goal of this example is to create workflows designed to detect overrepresented biochemical pathways, molecular functions, and cellular components from mass spectrometry data on proteins or their digested peptides, as defined in the gene ontology (GO). To do this, you need two types of files: a *mass spectrometry* data file in the HUPO-PSI standard *mzML* format and a *FASTA* format file that includes protein sequences. The *FASTA* file not only provides the amino acid sequences for matching to mass spectra but also includes gene and protein names necessary for fetching GO annotations. The goal is to produce *over-representation* data in a structured text format, such as *JSON*.
+
+Based on the problem description, the inputs specified are **Mass spectrum** in **mzML** format, and **Protein sequence** in **FASTA** format, while the output is **Over-representation data** in a **JSON** format.
 
 Specify Constraints
 ===================
 
-Constraints allow you to narrow down the search for workflows by setting specific requirements, such as computational resources, runtime, or data formats.
+Constraints enable you to refine your workflow search by setting specific requirements, such as including or excluding certain tools or operations from a drop-down menu. Here, a "tool" refers to a specific software tool, often a single command on a command line. An "operation," on the other hand, refers to an EDAM operation, which is a more abstract concept that can be implemented by various tools and other operations within a hierarchical structure. This approach lets you enforce specific characteristics in the generated workflows without needing to explicitly mention particular tools.
 
 .. figure:: ./screenshots/constraints.png
    :align: center
@@ -71,7 +70,7 @@ Constraints allow you to narrow down the search for workflows by setting specifi
 
    Web interface for specifying constraints on the workflow generation process. 
 
-Constraints currently allow enforcing (or excluding) specific types of operations or tools in the workflow. The example enforces the inclusion of at least one tool that performs "Analysis" and at least one tool that performs "Target-Decoy".
+In our example, we require the workflow generator to include a *Peptide identification* operation, as a crucial step in the targeted workflows. Additionally, we exclude the use of *Protein quantification* as we use label-free data, which can be analyzed by most proteomics software.
 
 
 Specify Search Parameters
@@ -85,7 +84,7 @@ Adjusting search parameters enables you to fine-tune the workflow generation pro
 
    Web interface for specifying search parameters for the workflow generation process. 
 
-The parameters influence how Workflomics explores the space of possible workflows. The parameters include the maximum number of steps in the workflow, the runtime, and the number of workflows to generate.
+The parameters influence how Workflomics explores the range of possible workflows. These parameters include the maximum number of steps (tools) in the workflow, the runtime of the generation algorithm, and the number of workflows to generate.
 
 Explore Generated Workflows
 ===========================
@@ -101,7 +100,7 @@ Workflow structure
 
    Web interface for exploring the candidate workflows generated by Workflomics. 
    
-Each workflow is presented as a directed acyclic graph (DAG) that visualizes the sequence of operations and tools involved, rectangles represent the tools and the arrows represent the data flow between them. You can click on each workflow and download it as a CWL file for further evaluation and execution.
+Each workflow is presented as a directed acyclic graph (DAG) that visualizes the sequence of operations and tools involved, rectangles represent the tools and the arrows represent the data flow between them. You can click on each workflow and download it in SVG format, or as a CWL (Common Workflow Language, a standard for describing computational data-analysis workflows) file for further evaluation and execution.
 
 Design-time benchmarks
 ----------------------
@@ -129,7 +128,7 @@ Pick Candidate Workflows and Run Them Locally
 
 After Workflomics has generated a list of candidate workflows, the next step is to evaluate these workflows to determine which ones best meet your research objectives. This involves selecting promising workflows based on the criteria you have set and running them on your local machine.
 
-- **Selecting Workflows**: Review the list of candidate workflows generated by Workflomics. Consider factors such as the workflow's complexity, the computational resources required, and its compatibility with your data.
+- **Selecting Workflows**: Review the list of candidate workflows generated by Workflomics. Consider factors such as the OS support, license, citations, and the overall workflow complexity. Select the workflows (workflows can be marked on the left hand side of the interface by clicking on the checkbox) that align with your objectives and click on "Download selected" to download locally the files in CWL format. Your browser might ask you to confirm the download, as the CWL files are downloaded in a zip file.
 - **Running Locally**: Execute the selected workflows locally to test their performance. This hands-on evaluation is crucial for understanding how the workflow operates with real data and identifying any necessary adjustments.
 
 For detailed instructions on how to benchmark workflows locally, including setting up your environment and running the benchmarking tool, please refer to the dedicated `Benchmarker Guide <https://workflomics.readthedocs.io/en/latest/workflomics-benchmarker/benchmarker-overview.html>`_ in our documentation.
@@ -139,7 +138,7 @@ This step is essential for ensuring that the workflows you choose are not only t
 Upload Benchmark Results
 ************************
 
-After executing and analyzing the workflows, uploading the benchmark results to Workflomics not only facilitates the comparison of efficiency and effectiveness across different workflow configurations but also unlocks the potential for visual analytics. This step is pivotal in harnessing the collective intelligence of the Workflomics community to refine and enhance bioinformatics workflows.
+After executing and analyzing the workflows, uploading the benchmark results to Workflomics facilitates the comparison of different workflows and enables you to visualize their performance metrics. This step is crucial for identifying the most efficient and reliable workflows for your research objectives.
 
 Steps for Uploading Benchmark Results
 =====================================
