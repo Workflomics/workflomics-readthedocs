@@ -15,8 +15,20 @@ To run the Workflomics workflows:
 1. Make sure that Docker or Singularity is running on your system. 
    
 2. Download workflows that were generated on the `Workflomics website <workflomics.org>`_` (using the "Download selected" button, see `documentation <https://workflomics.readthedocs.io/en/latest/user-guide/web-interface.html#explore-generated-workflows>`_), and unzip them.
+3. If you are using the "Workflomics demo example" you can change the content of the *inputs.yml* file to use larger mzML and FASTA data to be able to perform scientific benchmarking more effectively. To use a larger benchmarking dataset (available on `Zenodo <https://zenodo.org/records/11155792>`_), update the *inputs.yml* file as follows:
+   
+.. code-block:: yaml
 
-3. Execute the benchmark command in the terminal to run the workflows relying on Docker containers:
+  input_1:
+    class: File
+    format: http://edamontology.org/format_3244
+    path: https://zenodo.org/records/11086176/files/140131.LC2.IT2.XX.P01347_2-C,6_01_5970.mzML?download=1
+  input_2:
+    class: File
+    format: http://edamontology.org/format_1929
+    path: https://zenodo.org/records/11086176/files/UP000005640.fasta?download=1
+
+1. Execute the benchmark command in the terminal to run the workflows relying on Docker containers:
 
    .. code-block:: bash
 
