@@ -63,7 +63,22 @@ Commands for running workflows without benchmarking::
   $ workflomics run <path>
   # Run workflows in the specified directory without benchmarking.
 
+.. note:: Make sure to have Docker or Singularity installed and running on your system before running the Workflomics Benchmarker CLI.
 
+
+The following screenshot shows the command line interface for benchmarking workflows (make):
+
+.. figure:: ./screenshots/benchmark-cli-start.png
+   :align: center
+   :alt: Starting the benchmarking process
+
+   Command line interface for benchmarking workflows, showing the start of the benchmarking process.
+
+.. figure:: ./screenshots/benchmark-cli-end.png
+   :align: center
+   :alt: Benchmarking results
+
+   Command line interface for benchmarking workflows, showing the CLI output signalizing the completion of the benchmarking process.
 
 Visualizing Benchmark Results
 *****************************

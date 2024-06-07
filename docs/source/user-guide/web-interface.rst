@@ -143,9 +143,9 @@ After executing and analyzing the workflows, uploading the benchmark results to 
 Steps for Uploading Benchmark Results
 =====================================
 
-1. **Navigate to the Upload Interface**: Access the Workflomics upload page dedicated to benchmark results at `Workflomics Benchmarks Upload <http://145.38.190.48/benchmarks>`_. 
+1. **Navigate to the Upload Interface**: Access the Workflomics upload page dedicated to benchmark results at `Workflomics Benchmarks Upload <http://145.38.190.48/benchmarks>`_. This page was also accessible from the previous interface (Exploring Generated Workflows) by clicking on the "Upload benchmarked workflows" button. In addition, it is accessible from the home page by selecting the "Visualize benchmarks" option from the menu.
 
-2. **Prepare Your Benchmark Data**: Ensure your `benchmarks.json` file is ready for upload (see `How to generate benchmarks.json? <https://workflomics.readthedocs.io/en/latest/workflomics-benchmarker/benchmarker-overview.html>`_). This file should contain all relevant data from your benchmarking session.
+2. **Prepare Your Benchmark Data**: Ensure your `benchmarks.json` file is ready for upload (see `How to generate benchmarks.json? <https://workflomics.readthedocs.io/en/latest/workflomics-benchmarker/benchmarker-overview.html>`_ if you still haven't). This file should contain all relevant data from your benchmarking process.
 
 3. **Upload and Visualize**: Follow the on-screen instructions to upload your benchmark results. Upon successful upload, you will gain access to Workflomics' advanced visualization tools, enabling you to analyze and interpret your data.
 
