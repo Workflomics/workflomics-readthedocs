@@ -10,6 +10,13 @@ Setup the Domain Description
 ============================
 
 1. Fork the `workflomics/domains` repository on GitHub and add a new domain folder, e.g., `new domain`, to the repository.
-2. Create the 
+2. Create the directory structure for the domain:
+
+   .. code-block:: text
+
+      new-domain/
+      ├── data/
+      ├── workflows/
+      └── README.md
 
 
