@@ -34,6 +34,14 @@ Contents
    basics/installation
    basics/add-domain
 
+.. toctree::
+   :maxdepth: 2
+   :caption: Rational
+
+   rational/annotating-tools
+   rational/discussions
+   
+
 .. note::
 
    This project is under active development. Features and documentation are subject to change.
