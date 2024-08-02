@@ -30,55 +30,7 @@ Run-time benchmarks include execution details such as:
 JSON Schemas
 ------------
 
-### Design-Time Benchmark Schema
-
-.. code-block:: json
-
-    {
-        "workflowName": "string",
-        "runID": "string",
-        "benchmarks": [
-            {
-                "unit": "string",
-                "description": "string",
-                "title": "string",
-                "steps": [
-                    {
-                        "desirability": "number",
-                        "label": "string",
-                        "value": "string"
-                    }
-                ],
-                "aggregate_value": {
-                    "desirability": "number",
-                    "value": "string"
-                }
-            }
-        ],
-        "domainID": "string"
-    }
-
-.. image:: images/design_time_example.png
-   :alt: Design-Time Benchmark Visualization
-
-**Field Descriptions:**
-- `workflowName`: The name of the workflow.
-- `runID`: A unique identifier for the run.
-- `benchmarks`: An array of benchmark objects.
-  - `unit`: The unit of the benchmark.
-  - `description`: A description of the benchmark.
-  - `title`: The title of the benchmark.
-  - `steps`: An array of step objects detailing each tool.
-    - `desirability`: A score indicating desirability.
-    - `label`: The name of the tool.
-    - `value`: The value for the benchmark step.
-  - `aggregate_value`: Aggregated value for the benchmark.
-    - `desirability`: Aggregated desirability score.
-    - `value`: Aggregated value.
-
-### Run-Time Benchmark Schema
-
-The run-time benchmark schema extends the design-time schema with additional fields for execution details.
+### Benchmark Schema
 
 .. code-block:: json
 
@@ -117,12 +69,13 @@ The run-time benchmark schema extends the design-time schema with additional fie
         }
     ]
 
+
 .. image:: images/run_time_example.png
    :alt: Run-Time Benchmark Visualization
 
 **Field Descriptions:**
 - `workflowName`: The name of the workflow.
-- `executor`: The executor used for the run.
+- `executor`: The executor used for the run
 - `runID`: A unique identifier for the run.
 - `inputs`: The inputs for the workflow.
   - `input_1`: Details of the first input file.
@@ -142,10 +95,11 @@ The run-time benchmark schema extends the design-time schema with additional fie
     - `desirability`: A score indicating desirability.
     - `tooltip`: Additional details for the step.
 
+
+Note that run-time benchmark schema extends the design-time schema with additional fields for execution details.
+
+
 Other Formats
 -------------
-In addition to the JSON formats described above, we use other data formats such as YAML for various configurations and metadata within the project. These formats will be documented in subsequent sections.
+In addition to the JSON formats described above, we use other data formats such as APE-specific domain annotations within the project. These formats are either described externally and referenced or will be added to this document in the future.
 
-Conclusion
-----------
-This document outlines the structured formats used to capture detailed benchmark information at both the workflow and tool levels, ensuring a comprehensive overview of performance and design-time attributes.
