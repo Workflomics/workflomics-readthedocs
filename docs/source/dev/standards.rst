@@ -105,6 +105,35 @@ JSON Schemas
 +---------------------+----------+-----------------------------------------------------------+
 
 
++---------------------+----------+-----------------------------------------------------------+
+| Field               | Required | Description                                               |
++=====================+==========+===========================================================+
+| ``workflowName``    | Yes      | The name of the workflow.                                 |
++---------------------+----------+-----------------------------------------------------------+
+| ``executor``        | No       | The executor used for the run.                            |
++---------------------+----------+-----------------------------------------------------------+
+| ``runID``           | No       | A unique identifier for the run.                          |
++---------------------+----------+-----------------------------------------------------------+
+| ``inputs``          | No       | An array of input objects.                                |
+| * ``cwl_id``        | No       | The CWL identifier for the input.                         |
+| * ``filename``      | No       | The name of the input file.                               |
+| * ``size``          | No       | The size of the input file.                               |
++---------------------+----------+-----------------------------------------------------------+
+| ``benchmarks``      | Yes      | An array of benchmark objects.                            |
+| * ``description``   | Yes      | A description of the benchmark.                           |
+| * ``title``         | Yes      | The title of the benchmark.                               |
+| * ``unit``          | Yes      | The unit of the benchmark.                                |
+| * ``aggregate_value``| Yes     | Aggregated value for the benchmark.                       |
+|   * ``value``       | Yes      | The aggregated value.                                     |
+|   * ``desirability``| Yes      | Aggregated desirability score.                            |
+| * ``steps``         | Yes      | An array of step objects detailing each tool.             |
+|   * ``label``       | Yes      | The name of the tool.                                     |
+|   * ``value``       | Yes      | The value for the benchmark step.                         |
+|   * ``desirability``| Yes      | A score indicating desirability.                          |
+|   * ``tooltip``     | No       | Additional details for the step.                          |
++---------------------+----------+-----------------------------------------------------------+
+
+
 
 
 
