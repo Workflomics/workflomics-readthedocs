@@ -32,6 +32,7 @@ Contents
    :caption: Developer Guide
 
    basics/installation
+   basics/pubmetric
 
 .. note::
 
