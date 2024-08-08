@@ -12,14 +12,14 @@ The json structure is used to capture detailed benchmark results, which include 
 
 
 Design-Time Benchmarks
------------------------
+======================
 Design-time benchmarks include metadata such as:
 - Supported Operating Systems (OS)
 - License types
 - Citation counts
 
 Run-Time Benchmarks
--------------------
+===================
 Run-time benchmarks include execution details such as:
 - Execution status
 - Execution time
@@ -28,7 +28,7 @@ Run-time benchmarks include execution details such as:
 - Number of identified proteins and GO-terms
 
 JSON Schemas
-------------
+============
 
 ### Benchmark Schema
 
@@ -104,7 +104,7 @@ JSON Schemas
 +-----+-----+---------------------+----------+-----------------------------------------------+
 |     |     | ``value``           | Yes      | The aggregated value.                         |
 +-----+-----+---------------------+----------+-----------------------------------------------+
-|     |     | ``desirability``    | Yes      | Aggregated desirability score.                |
+|     |     | ``desirability``    | Yes      | Aggregated desirability score (-1 to 1).      |
 +-----+-----+---------------------+----------+-----------------------------------------------+
 |     |       ``steps``           | Yes      | An array of step objects detailing each tool. |
 +-----+-----+---------------------+----------+-----------------------------------------------+
@@ -112,16 +112,54 @@ JSON Schemas
 +-----+-----+---------------------+----------+-----------------------------------------------+
 |     |     | ``value``           | Yes      | The value for the benchmark step.             |
 +-----+-----+---------------------+----------+-----------------------------------------------+
-|     |     | ``desirability``    | Yes      | A score indicating desirability.              |
+|     |     | ``desirability``    | Yes      | A score indicating desirability (-1 to 1).    |
 +-----+-----+---------------------+----------+-----------------------------------------------+
-|     |     | ``tool``            | No       | Additional details for the step.              |
+|     |     | ``tooltip``         | No       | Additional details for the step.              |
 +-----+-----+---------------------+----------+-----------------------------------------------+
 
 
 Note that run-time benchmark schema extends the design-time schema with additional fields for execution details.
 
+Visualization
+-------------
+
+The design-time and run-time benchmarks are using different visualizations. The **design-time benchmarks** are intended to give a quick overview of the workflow, and guide the user to the most suitable workflow to be executed and further analyzed. Therefore we display workflow steps as a graphical elements where their color and tooltip depict the benchmark values. An example of such visualization is shown below.
+
+.. image:: images/designtime.png
+   :alt: Design-Time Benchmark Visualization
+
+In this visualization, each benchmark from the ``benchmarks`` array is shown as a separate row. The ``title`` of each benchmark serves as the row label, and the ``description`` appears as its tooltip. The ``aggregate_value`` is displayed next to the label without additional formatting.
+
+Each benchmark's workflow tools are listed in the ``steps`` array, represented by individual squares. The ``label`` of each tool is its tooltip, and the ``desirability`` determines its color. Desirability is a score ranging from -1 to 1:
+
+- -1 (least desirable) is depicted in red.
+- 0 (neutral) is depicted in white.
+- 1 (most desirable) is depicted in green.
+
+For scores that are not whole numbers, the color is shown as a gradient between the respective colors. In our example, all desirability scores fall between 0 and 1, using only the gradient from white to green.
+
+
+The **run-time benchmarks** are intended to give a detailed overview of the execution of the workflow. Therefore we display the benchmark values in a table, where the rows represent the tools and the columns represent the benchmark values. An example of such visualization is shown below.
+
+.. image:: images/runtime.png
+   :alt: Run-Time Benchmark Visualization
+
+In this visualization, each benchmark from the ``benchmarks`` array is shown as a separate column. The ``title`` of each benchmark serves as the column label, together with the ``unit``. The rows are nested, with the first level representing the whole workflow and the second level representing the tools. 
+
+On the first level, the workflow is represented by a single row, with the ``workflowName`` as the label. The ``aggregate_value`` is displayed in the respective column and the ``desirability`` determines its color. Desirability is a score ranging from -1 to 1 (as described above).
+
+On the second level, each tool is represented by a row, with the ``label`` as the label. The ``value`` is displayed in the respective column and the ``desirability`` determines the cell color. Desirability is a score ranging from -1 to 1 (as described above).
+
+The ``tooltip`` field is used to provide additional information about the benchmark value. In the following example, the tooltip for the cell that represents the number of warnings is the list of warnings that were generated during the execution of the tool.
+
+.. image:: images/runtime-tooltip.png
+   :alt: Run-Time Benchmarks with a Tooltip
+
+.. note::
+   We generally prefer to use desirability scores from 0 to 1 or -1 to 0, as each benchmark often has a "good" or "bad" and a neutral side. In some rare cases, we include -1 to indicate, for example, that a step has failed. For instance, in the `candidate_workflow_4`, execution times are usually between 0 and 1. However, if a tool fails, it would be colored red to alert the user that the value was not retrieved due to a failed execution.
+
 
 Other Formats
--------------
+=============
 In addition to the JSON formats described above, we use other data formats such as APE-specific domain annotations within the project. These formats are either described externally and referenced or will be added to this document in the future.
 
