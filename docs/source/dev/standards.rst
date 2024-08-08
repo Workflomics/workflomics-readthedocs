@@ -36,7 +36,7 @@ JSON Schemas
 
     [
         {
-            "workflowName": "string",
+            "workflow_name": "string",
             "executor": "string",
             "runID": "string",
             "inputs": [
@@ -57,6 +57,7 @@ JSON Schemas
                     },
                     "steps": [
                         {
+                            "tool_name": "string",
                             "label": "string",
                             "value": "string|number",
                             "desirability": "number",
@@ -78,7 +79,7 @@ JSON Schemas
 +-----+-----+---------------------+----------+-----------------------------------------------+
 |             Field               | Required | Description                                   |
 +=====+=====+=====================+==========+===============================================+
-|             ``workflowName``    | Yes      | The name of the workflow.                     |
+|             ``workflow_name``   | Yes      | The name of the workflow.                     |
 +-----+-----+---------------------+----------+-----------------------------------------------+
 |             ``executor``        | No       | The executor used for the run.                |
 +-----+-----+---------------------+----------+-----------------------------------------------+
@@ -108,9 +109,11 @@ JSON Schemas
 +-----+-----+---------------------+----------+-----------------------------------------------+
 |     |       ``steps``           | Yes      | An array of step objects detailing each tool. |
 +-----+-----+---------------------+----------+-----------------------------------------------+
-|     |     | ``label``           | Yes      | The name of the tool.                         |
+|     |     | ``tool_name``        | Yes      | The name of the tool.                         |
 +-----+-----+---------------------+----------+-----------------------------------------------+
-|     |     | ``value``           | Yes      | The value for the benchmark step.             |
+|     |     | ``value``           | Yes      | The computed value for the benchmark step.    |
++-----+-----+---------------------+----------+-----------------------------------------------+
+|     |     | ``label``           | Yes      | A human readable benchmark value.             |
 +-----+-----+---------------------+----------+-----------------------------------------------+
 |     |     | ``desirability``    | Yes      | A score indicating desirability (-1 to 1).    |
 +-----+-----+---------------------+----------+-----------------------------------------------+
@@ -130,7 +133,7 @@ The design-time and run-time benchmarks are using different visualizations. The 
 
 In this visualization, each benchmark from the ``benchmarks`` array is shown as a separate row. The ``title`` of each benchmark serves as the row label, and the ``description`` appears as its tooltip. The ``aggregate_value`` is displayed next to the label without additional formatting.
 
-Each benchmark's workflow tools are listed in the ``steps`` array, represented by individual squares. The ``label`` of each tool is its tooltip, and the ``desirability`` determines its color. Desirability is a score ranging from -1 to 1:
+Each benchmark's workflow tools are listed in the ``steps`` array, represented by individual squares. The ``value`` of each tool is its tooltip, and the ``desirability`` determines its color. Desirability is a score ranging from -1 to 1:
 
 - -1 (least desirable) is depicted in red.
 - 0 (neutral) is depicted in white.
@@ -138,6 +141,49 @@ Each benchmark's workflow tools are listed in the ``steps`` array, represented b
 
 For scores that are not whole numbers, the color is shown as a gradient between the respective colors. In our example, all desirability scores fall between 0 and 1, using only the gradient from white to green.
 
+To illustrate, this is a snippet of the JSON structure that corresponds to the visualization above:
+
+.. code-block:: json
+
+    {
+    "workflow_name": "candidate_workflow_1",
+    "runID": "368028d5e31722431463105",
+    "benchmarks": [
+        ...
+        {
+            "unit": "citation count",
+            "description": "Citations annotated per tool",
+            "title": "Citations",
+            "steps": [
+                {
+                    "desirability": 1,
+                    "label": "Comet",
+                    "value": "718"
+                },
+                {
+                    "desirability": 1,
+                    "label": "ProteinProphet",
+                    "value": "2888"
+                },
+                {
+                    "desirability": 0,
+                    "label": "protXml2IdList",
+                    "value": "0"
+                },
+                {
+                    "desirability": 1,
+                    "label": "gProfiler",
+                    "value": "3460"
+                }
+            ],
+            "aggregate_value": {
+                "desirability": 1,
+                "value": "1803"
+            }
+        },
+        ...
+        ]
+    }
 
 The **run-time benchmarks** are intended to give a detailed overview of the execution of the workflow. Therefore we display the benchmark values in a table, where the rows represent the tools and the columns represent the benchmark values. An example of such visualization is shown below.
 
@@ -146,18 +192,123 @@ The **run-time benchmarks** are intended to give a detailed overview of the exec
 
 In this visualization, each benchmark from the ``benchmarks`` array is shown as a separate column. The ``title`` of each benchmark serves as the column label, together with the ``unit``. The rows are nested, with the first level representing the whole workflow and the second level representing the tools. 
 
-On the first level, the workflow is represented by a single row, with the ``workflowName`` as the label. The ``aggregate_value`` is displayed in the respective column and the ``desirability`` determines its color. Desirability is a score ranging from -1 to 1 (as described above).
+On the first level, the workflow is represented by a single row, with the ``workflow_name`` as the label. The ``aggregate_value`` is displayed in the respective column and the ``desirability`` determines its color. Desirability is a score ranging from -1 to 1 (as described above).
 
 On the second level, each tool is represented by a row, with the ``label`` as the label. The ``value`` is displayed in the respective column and the ``desirability`` determines the cell color. Desirability is a score ranging from -1 to 1 (as described above).
+
+.. note::
+   We generally prefer to use desirability scores from 0 to 1 or -1 to 0, as each benchmark often has a "good" or "bad" and a neutral side. In some rare cases, we include -1 to indicate, for example, that a step has failed. For instance, in the `candidate_workflow_4`, execution times are usually between 0 and 1. However, if a tool fails, it would be colored red to alert the user that the value was not retrieved due to a failed execution.
 
 The ``tooltip`` field is used to provide additional information about the benchmark value. In the following example, the tooltip for the cell that represents the number of warnings is the list of warnings that were generated during the execution of the tool.
 
 .. image:: images/runtime-tooltip.png
    :alt: Run-Time Benchmarks with a Tooltip
 
-.. note::
-   We generally prefer to use desirability scores from 0 to 1 or -1 to 0, as each benchmark often has a "good" or "bad" and a neutral side. In some rare cases, we include -1 to indicate, for example, that a step has failed. For instance, in the `candidate_workflow_4`, execution times are usually between 0 and 1. However, if a tool fails, it would be colored red to alert the user that the value was not retrieved due to a failed execution.
 
+The following JSON structure corresponds to the ``candidate_workflow_4`` workflow visualization above:
+
+.. code-block:: json
+
+    {
+      "workflowName": "candidate_workflow_4",
+      "executor": "cwltool 3.1.20240508115724",
+      "runID": "39eddf71ea1700672984653",
+      "inputs": {
+         "input_1": {
+            "filename": "EH10654.mzML"
+         },
+         "input_2": {
+            "filename": "UP000005640_9606.fasta"
+         }
+      },
+      "benchmarks": [
+         {
+            "description": "Status for each step in the workflow",
+            "title": "Status",
+            "unit": "\u2713 or \u2717",
+            "aggregate_value": {
+               "value": "(2/6) \u2717",
+               "desirability": -1
+            },
+            "steps": [
+               {
+                  "label": "Comet",
+                  "value": "\u2713",
+                  "desirability": 1
+               },
+               {
+                  "label": "mzRecal",
+                  "value": "\u2713",
+                  "desirability": 1
+               },
+               {
+                  "label": "XTandem",
+                  "value": "\u2717",
+                  "desirability": -1
+               },
+               {
+                  "label": "ProteinProphet",
+                  "value": "-",
+                  "desirability": 0
+               },
+               {
+                  "label": "protXml2IdList",
+                  "value": "-",
+                  "desirability": 0
+               },
+               {
+                  "label": "gProfiler",
+                  "value": "-",
+                  "desirability": 0
+               }
+            ]
+         },
+         {
+            "description": "Execution time for each step in the workflow",
+            "title": "Execution time",
+            "unit": "seconds",
+            "aggregate_value": {
+               "value": 74,
+               "desirability": -1
+            },
+            "steps": [
+               {
+                  "label": "Comet",
+                  "value": 39,
+                  "desirability": 0.7
+               },
+               {
+                  "label": "mzRecal",
+                  "value": 34,
+                  "desirability": 0.7
+               },
+               {
+                  "label": "XTandem",
+                  "value": 1,
+                  "desirability": -1
+               },
+               {
+                  "label": "ProteinProphet",
+                  "value": "-",
+                  "desirability": 0
+               },
+               {
+                  "label": "protXml2IdList",
+                  "value": "-",
+                  "desirability": 0
+               },
+               {
+                  "label": "gProfiler",
+                  "value": "-",
+                  "desirability": 0
+               }
+            ]
+         },
+         ...
+      ]
+   }
+
+Notice that the status icons are explicitly provided in the JSON file as Unicode characters. The check mark (\u2713) is used to indicate that the tool has successfully executed, while the cross (\u2717) is used to indicate that the tool has failed. The dash (-) is used to indicate that the tool has not been executed.
 
 Other Formats
 =============
