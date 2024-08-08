@@ -8,29 +8,14 @@ This page provides an overview of the various data formats and schemas used with
 JSON Schema for Benchmarks
 **************************
 
-The json structure is used to capture detailed benchmark results, which include both design-time and run-time metrics. Each benchmark is detailed at the tool level and aggregated at the workflow level. 
+The json structure is used to capture detailed benchmark results, which include both design-time and run-time metrics. Each benchmark is detailed at the tool level and aggregated at the workflow level. The benchmarks are used to guide users in selecting the most suitable workflow for their needs and to provide detailed information about the execution of the workflow.
 
+The benchmarks are computed at two levels: design-time and run-time. The design-time benchmarks are computed based on metadata such as the number of citations, supported operating systems, and license types. The run-time benchmarks are computed based on execution details such as execution time, memory usage, and the number of identified proteins and GO-terms. They use the same structure, however they are visualized differently to provide the user with the most relevant information at each stage.
 
-Design-Time Benchmarks
-======================
-Design-time benchmarks include metadata such as:
-- Supported Operating Systems (OS)
-- License types
-- Citation counts
-
-Run-Time Benchmarks
-===================
-Run-time benchmarks include execution details such as:
-- Execution status
-- Execution time
-- Memory usage
-- Number of warnings and errors
-- Number of identified proteins and GO-terms
 
 JSON Schemas
 ============
 
-### Benchmark Schema
 
 .. code-block:: json
 
@@ -308,7 +293,7 @@ The following JSON structure corresponds to the ``candidate_workflow_4`` workflo
       ]
    }
 
-Notice that the status icons are explicitly provided in the JSON file as Unicode characters. The check mark (\u2713) is used to indicate that the tool has successfully executed, while the cross (\u2717) is used to indicate that the tool has failed. The dash (-) is used to indicate that the tool has not been executed.
+Notice that the status icons are explicitly provided in the JSON file as Unicode characters. The check mark (✔, ``\u2713``) is used to indicate that the tool has successfully executed, while the cross (✘, ``\u2717``) is used to indicate that the tool has failed. The dash (-) is used to indicate that the tool has not been executed.
 
 Other Formats
 =============
