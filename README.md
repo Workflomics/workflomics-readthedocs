@@ -1,5 +1,4 @@
-Workflomics Documentation
-=======================================
+# Workflomics Documentation
 
 [![Documentation Status](https://readthedocs.org/projects/workflomics/badge/?version=latest)](https://workflomics.readthedocs.io/en/latest/?badge=latest)
 
@@ -12,15 +11,16 @@ Read the tutorial here:
 
 https://docs.readthedocs.io/en/stable/tutorial/
 
-## How to run the documentation locally
+## How to build the documentation locally
 
 1. Clone the repository and navigate to the root directory
 
 2. Install the required packages
-    
+
     ```bash
     pip install -r docs/requirements.txt
     ```
+
 3. Build the documentation
 
     ```bash

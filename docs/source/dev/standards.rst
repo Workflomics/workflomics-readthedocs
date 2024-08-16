@@ -94,7 +94,7 @@ JSON Schemas
 +-----+-----+---------------------+----------+-----------------------------------------------+
 |     |       ``steps``           | Yes      | An array of step objects detailing each tool. |
 +-----+-----+---------------------+----------+-----------------------------------------------+
-|     |     | ``tool_name``        | Yes      | The name of the tool.                         |
+|     |     | ``tool_name``        | Yes     | The name of the tool.                         |
 +-----+-----+---------------------+----------+-----------------------------------------------+
 |     |     | ``value``           | Yes      | The computed value for the benchmark step.    |
 +-----+-----+---------------------+----------+-----------------------------------------------+
@@ -141,24 +141,28 @@ To illustrate, this is a snippet of the JSON structure that corresponds to the v
             "title": "Citations",
             "steps": [
                 {
-                    "desirability": 1,
-                    "label": "Comet",
-                    "value": "718"
+                    "desirability": 0.8,
+                    "tool_name": "Comet",
+                    "value": "718",
+                    "label": "718"
                 },
                 {
                     "desirability": 1,
-                    "label": "ProteinProphet",
-                    "value": "2888"
+                    "tool_name": "ProteinProphet",
+                    "value": "2888",
+                    "label": "2888"
                 },
                 {
                     "desirability": 0,
-                    "label": "protXml2IdList",
-                    "value": "0"
+                    "tool_name": "protXml2IdList",
+                    "value": "0",
+                    "label": "Unknown"
                 },
                 {
                     "desirability": 1,
-                    "label": "gProfiler",
-                    "value": "3460"
+                    "tool_name": "gProfiler",
+                    "value": "3460",
+                    "label": "3460"
                 }
             ],
             "aggregate_value": {
@@ -217,32 +221,38 @@ The following JSON structure corresponds to the ``candidate_workflow_4`` workflo
             },
             "steps": [
                {
-                  "label": "Comet",
-                  "value": "\u2713",
+                  "tool_name": "Comet",
+                  "label": "\u2713",
+                  "value": "pass",
                   "desirability": 1
                },
                {
-                  "label": "mzRecal",
-                  "value": "\u2713",
+                  "tool_name": "mzRecal",
+                  "label": "\u2713",
+                  "value": "pass",
                   "desirability": 1
                },
                {
-                  "label": "XTandem",
-                  "value": "\u2717",
+                  "tool_name": "XTandem",
+                  "label": "\u2717",
+                  "value": "fail",
                   "desirability": -1
                },
                {
-                  "label": "ProteinProphet",
+                  "tool_name": "ProteinProphet",
+                  "label": "-",
                   "value": "-",
                   "desirability": 0
                },
                {
-                  "label": "protXml2IdList",
+                  "tool_name": "Comet",
+                  "label": "-",
                   "value": "-",
                   "desirability": 0
                },
                {
-                  "label": "gProfiler",
+                  "tool_name": "Comet",
+                  "label": "-",
                   "value": "-",
                   "desirability": 0
                }
@@ -258,31 +268,37 @@ The following JSON structure corresponds to the ``candidate_workflow_4`` workflo
             },
             "steps": [
                {
+                  "tool_name": "Comet",
                   "label": "Comet",
                   "value": 39,
                   "desirability": 0.7
                },
                {
+                  "tool_name": "mzRecal",
                   "label": "mzRecal",
                   "value": 34,
                   "desirability": 0.7
                },
                {
+                  "tool_name": "XTandem",
                   "label": "XTandem",
                   "value": 1,
                   "desirability": -1
                },
                {
+                  "tool_name": "ProteinProphet",
                   "label": "ProteinProphet",
                   "value": "-",
                   "desirability": 0
                },
                {
+                  "tool_name": "protXml2IdList",
                   "label": "protXml2IdList",
                   "value": "-",
                   "desirability": 0
                },
                {
+                  "tool_name": "gProfiler",
                   "label": "gProfiler",
                   "value": "-",
                   "desirability": 0
