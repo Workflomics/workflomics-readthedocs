@@ -94,7 +94,7 @@ JSON Schemas
 +-----+-----+---------------------+----------+-----------------------------------------------+
 |     |       ``steps``           | Yes      | An array of step objects detailing each tool. |
 +-----+-----+---------------------+----------+-----------------------------------------------+
-|     |     | ``tool_name``        | Yes     | The name of the tool.                         |
+|     |     | ``tool_name``       | Yes      | The name of the tool.                         |
 +-----+-----+---------------------+----------+-----------------------------------------------+
 |     |     | ``value``           | Yes      | The computed value for the benchmark step.    |
 +-----+-----+---------------------+----------+-----------------------------------------------+
@@ -126,7 +126,10 @@ Each benchmark's workflow tools are listed in the ``steps`` array, represented b
 
 For scores that are not whole numbers, the color is shown as a gradient between the respective colors. In our example, all desirability scores fall between 0 and 1, using only the gradient from white to green.
 
-To illustrate, this is a snippet of the JSON structure that corresponds to the visualization above:
+.. note::
+   Benchmark information for some tools might not be available. In such cases, the ``value`` is set to ``"Unknown"`` (see tool ``protXml2IdList`` in the following example) and the ``desirability`` is (usually) set to 0. Such boxes are visualized as crossed out to indicate that the data is ``Unknown`` (the keyword is case sensitive).
+
+To illustrate, this is a snippet of the JSON structure that corresponds to the first (``candidate_workflow_1``) visualization above:
 
 .. code-block:: json
 
