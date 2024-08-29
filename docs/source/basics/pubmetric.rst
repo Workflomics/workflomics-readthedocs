@@ -54,14 +54,14 @@ Graph Generation
 
      .. code-block:: python
 
-        full_proteomics_graph = asyncio.run(pubmetric.network.create_network(topic_id="topic_0121", inpath="path/to/data"))
+        full_proteomics_graph = asyncio.run(pubmetric.network.create_network(topic_id="topic_0121"))
         full_metabolomics_graph = asyncio.run(pubmetric.network.create_network(topic_id="topic_3172"))
 
    - Generate a genomics co-citation graph, using not the topic, but all well-annotated tools currently in bio.tools by specifying topic_id=None and tool_selection='full':
 
      .. code-block:: python
 
-        full_genomics_graph = asyncio.run(pubmetric.network.create_network(topic_id=None, inpath='path/to/data', tool_selection='full'))
+        full_genomics_graph = asyncio.run(pubmetric.network.create_network(topic_id=None, tool_selection='full'))
 
 Pubmetric outputs three files; doi_pmid_library.json, tool_metadata.json and graph.pkl. These can be used to load the graph, or recreate the graph using the already downloaded metadata.
 
@@ -129,19 +129,19 @@ The package expects some specific schemas for certain files
    {
       "creationDate": "string",
       "topic": "string",
-      "totalNrTools": integer,
-      "biotoolsWOpmid": integer,
-      "pmidFromDoi": integer,
+      "totalNrTools": "number",
+      "biotoolsWOpmid": "number",
+      "pmidFromDoi": "number",
       "tools": [
          {
             "name": "string",
             "doi": "string or null",
             "topics": ["string"],
-            "nrPublications": integer,
+            "nrPublications": "number",
             "allPublications": ["string"],
-            "pubDate": integer,
+            "pubDate": "number",
             "pmid": "string",
-            "nrCitations": integer
+            "nrCitations": "number"
          }
       ]
    }
