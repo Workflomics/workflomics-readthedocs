@@ -51,7 +51,7 @@ Graph Generation
 
 **Full Network**:
 
-Generate a full co-citation network for a specific topic:
+Generate a co-citation network for a specific topic:
 
 .. code-block:: python
 
@@ -63,6 +63,14 @@ Generate a genomics co-citation graph, using not the topic, but all well-annotat
 .. code-block:: python
 
    full_genomics_graph = asyncio.run(pubmetric.network.create_network(topic_id=None, tool_selection='full'))
+
+Generate a co-citation network for a user-specific list of tools:
+
+.. code-block:: python
+
+   tool_pmid_list = ["pmid1", "pmid2", ...]
+   graph_from_list = asyncio.run(pubmetric.network.create_network(topic_id=None, tool_list=tool_pmid_list))
+
 
 Pubmetric outputs three files; doi_pmid_library.json, tool_metadata.json and graph.pkl. These can be used to load the graph, or recreate the graph using the already downloaded metadata.
 
