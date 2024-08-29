@@ -1,10 +1,11 @@
 Pubmetric Documentation
 #######################
 
-This guide provides instructions for setting up and using the `pubmetric` package, including co-citation graph generation and the calculation of metrics.
+This guide provides instructions for setting up and using the `pubmetric` package locally, including co-citation graph generation and the calculation of metrics.
 
-Setup
-*****
+
+Local Setup
+***********
 
 
 - Ensure you have Python 3.7+ installed.
@@ -35,6 +36,7 @@ Import the necessary modules in your Python script, pubmetric relies on asyncio 
 
    import pubmetric
    import asyncio
+
 
 Graph Generation
 *****************
