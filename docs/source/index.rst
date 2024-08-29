@@ -33,6 +33,7 @@ Contents
 
    basics/installation
    basics/pubmetric
+   basics/pubmetric_api
 
 .. note::
 
