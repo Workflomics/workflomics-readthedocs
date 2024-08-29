@@ -136,9 +136,9 @@ The package expects some specific schemas for certain files
          {
             "name": "string",
             "doi": "string or null",
-            "topics": ["string", ...],
+            "topics": ["string"],
             "nrPublications": integer,
-            "allPublications": ["string", ...],
+            "allPublications": ["string"],
             "pubDate": integer,
             "pmid": "string",
             "nrCitations": integer
@@ -191,28 +191,16 @@ The package expects some specific schemas for certain files
            [
                "string",
                "string"
-           ],
-           [
-               "string",
-               "string"
            ]
-           ...
        ],
        "steps": {
-           "string": "string",
            "string": "string"
-           ...
        },
        "pmid_edges": [
            [
                "string",
                "string"
-           ],
-           [
-               "string",
-               "string"
            ]
-           ...
        ]
    }
 
