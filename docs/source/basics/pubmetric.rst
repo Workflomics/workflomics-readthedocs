@@ -45,7 +45,7 @@ Graph Generation
 
    .. code-block:: python
 
-      testsize_graph = asyncio.run(pubmetric.create_network(test_size=20))
+      testsize_graph = asyncio.run(pubmetric.network.create_network(test_size=20))
       print(testsize_graph.vs['age'])
 
 **Full Network**:
@@ -54,14 +54,14 @@ Graph Generation
 
      .. code-block:: python
 
-        full_proteomics_graph = asyncio.run(pubmetric.create_network(topic_id="topic_0121", inpath="path/to/data"))
-        full_metabolomics_graph = asyncio.run(pubmetric.create_network(topic_id="topic_3172"))
+        full_proteomics_graph = asyncio.run(pubmetric.network.create_network(topic_id="topic_0121", inpath="path/to/data"))
+        full_metabolomics_graph = asyncio.run(pubmetric.network.create_network(topic_id="topic_3172"))
 
    - Generate a genomics co-citation graph, using not the topic, but all well-annotated tools currently in bio.tools by specifying topic_id=None and tool_selection='full':
 
      .. code-block:: python
 
-        full_genomics_graph = asyncio.run(pubmetric.create_network(topic_id=None, inpath='path/to/data', tool_selection='full'))
+        full_genomics_graph = asyncio.run(pubmetric.network.create_network(topic_id=None, inpath='path/to/data', tool_selection='full'))
 
 Pubmetric outputs three files; doi_pmid_library.json, tool_metadata.json and graph.pkl. These can be used to load the graph, or recreate the graph using the already downloaded metadata.
 
@@ -72,7 +72,7 @@ Pubmetric outputs three files; doi_pmid_library.json, tool_metadata.json and gra
    .. code-block:: python
 
       path_to_data = 'path/to/your/data'
-      loaded_graph = asyncio.run(pubmetric.create_network(inpath=path_to_data, load_graph=True))
+      loaded_graph = asyncio.run(pubmetric.network.create_network(inpath=path_to_data, load_graph=True))
 
 **Graph visualisation**
 - Import Cytoscape for python to interact with Cytoscape directly in your script:
@@ -99,17 +99,19 @@ Metric Calculation
 
 **Download Workflow Data**:
 
-- Load workflow metadata and calculate the metric. CWL files can be downloaded for Worfklomics.org live demo. 
+- To calculate the metric score the workflow must be loaded using `parse_cwl`. CWL files can be downloaded from the `Workflomics`_ live demo.
   The CWL parser function needs the tool_metadata.json which is generated alongside the co-citation graph.
   There are two main metrics, ``workflow_average`` and ``complete_average`` which take into account only the workflow 
   edges, or all possible edges between tools in a workflow, respectively:
+
+.. _Workflomics: http://145.38.190.48/
 
    .. code-block:: python
 
       cwl_file_path = "./path/to/candidate_workflow.cwl"
       metadata_file_path = 'path/to/tool_metadata.json'
-      workflow = pubmetric.parse_cwl(cwl_file_path, metadata_file_path)
-      metric_score = pubmetric.workflow_average(loaded_graph, workflow)
+      workflow = pubmetric.workflows.parse_cwl(cwl_file_path, metadata_file_path)
+      metric_score = pubmetric.metrics.workflow_average(loaded_graph, workflow)
 
 File Schemas
 ************
@@ -125,21 +127,21 @@ The package expects some specific schemas for certain files
 .. code-block:: json
 
    {
-      "creationDate": "<string>",
-      "topic": "<string>",
-      "totalNrTools": <integer>,
-      "biotoolsWOpmid": <integer>,
-      "pmidFromDoi": <integer>,
+      "creationDate": "string",
+      "topic": "string",
+      "totalNrTools": integer,
+      "biotoolsWOpmid": integer,
+      "pmidFromDoi": integer,
       "tools": [
          {
-            "name": "<string>",
-            "doi": "<string or null>",
-            "topics": ["<string>", ...],
-            "nrPublications": <integer>,
-            "allPublications": ["<string>", ...],
-            "pubDate": <integer>,
-            "pmid": "<string>",
-            "nrCitations": <integer>
+            "name": "string",
+            "doi": "string or null",
+            "topics": ["string", ...],
+            "nrPublications": integer,
+            "allPublications": ["string", ...],
+            "pubDate": integer,
+            "pmid": "string",
+            "nrCitations": integer
          }
       ]
    }
@@ -180,35 +182,35 @@ The package expects some specific schemas for certain files
 
 **The Workflow Dictionary**
 
-- The workflow dictionary, which is generated using ``pubmetric.workflows.parse_cwl``, follows the following schema:
+- The workflow dictionary, which is generated using ``parse_cwl``, follows the following schema:
 
 .. code-block:: json
 
    {
        "edges": [
            [
-               "<string>",
-               "<string>"
+               "string",
+               "string"
            ],
            [
-               "<string>",
-               "<string>"
+               "string",
+               "string"
            ]
            ...
        ],
        "steps": {
-           "<string>": "<string>",
-           "<string>": "<string>"
+           "string": "string",
+           "string": "string"
            ...
        },
        "pmid_edges": [
            [
-               "<string>",
-               "<string>"
+               "string",
+               "string"
            ],
            [
-               "<string>",
-               "<string>"
+               "string",
+               "string"
            ]
            ...
        ]
