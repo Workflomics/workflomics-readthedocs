@@ -99,7 +99,7 @@ Metric Calculation
 **Download Workflow Data**:
 
 To calculate the metric score the workflow must be loaded using `parse_cwl`. CWL files can be downloaded from the `Workflomics`_ live demo.
-The CWL parser function needs the tool_metadata.json which is generated alongside the co-citation graph.
+The CWL parser function needs `the tool_metadata.json` metadata file which is generated alongside the co-citation graph.
 There are two main metrics, ``workflow_average`` and ``complete_average`` which take into account only the workflow 
 edges, or all possible edges between tools in a workflow, respectively:
 
@@ -115,8 +115,7 @@ edges, or all possible edges between tools in a workflow, respectively:
 File Schemas
 ************
 
-The package expects some specific schemas for certain files 
-
+This package requires files and data structures to adhere to specific schemas for proper operation. These are presented below. 
 
 **The Metadata File:**
 
