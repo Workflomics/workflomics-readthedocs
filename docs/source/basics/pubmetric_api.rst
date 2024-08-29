@@ -20,7 +20,7 @@ Generates benchmarks for the metric scores as well as the ages of tools.
 - **Success Response:**
 
   - **Code:** 200 
-  - **Content:** application/ json containing metric and age benchmarks. #should this be application?
+  - **Content:** application/ json containing metric and age benchmarks. 
 
 
 Recreate Graph
