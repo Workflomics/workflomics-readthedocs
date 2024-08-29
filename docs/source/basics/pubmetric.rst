@@ -70,8 +70,11 @@ Load an existing co-citation graph from a specified path:
 
 .. code-block:: python
 
-   path_to_data = 'path/to/your/data'
+   path_to_data = 'path/to/your/data/directory'
    loaded_graph = asyncio.run(pubmetric.network.create_network(inpath=path_to_data, load_graph=True))
+
+
+.. note:: If load_graph=True is not specified, the graph will be regenerated using the metadata file in the specified directory.
 
 **Graph visualisation**
 Install and import Cytoscape for python (py4cytoscape) to interact with Cytoscape directly in your script:
