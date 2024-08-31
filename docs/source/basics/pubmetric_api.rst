@@ -47,7 +47,7 @@ Regenerates the co-citation graph on demand.
 - **Success Response:**
 
   - **Code:** 200 
-  - **Content:** "Graph and metadata file recreated successfully"  
+  - **Content:** "Graph and metadata file recreated successfully!"  
 
 
 
