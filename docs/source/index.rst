@@ -31,9 +31,9 @@ Contents
    :maxdepth: 2
    :caption: Developer Guide
 
-   dev/installation
-   dev/add-domain
-   dev/standards
+   developer-guide/installation
+   developer-guide/domain-development
+   developer-guide/standards
 
 .. toctree::
    :maxdepth: 2

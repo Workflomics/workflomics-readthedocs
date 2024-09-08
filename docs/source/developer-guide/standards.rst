@@ -17,7 +17,7 @@ JSON Schemas
 ============
 
 
-.. code-block:: json
+.. code-block::
 
     [
         {
@@ -131,7 +131,7 @@ For scores that are not whole numbers, the color is shown as a gradient between 
 
 To illustrate, this is a snippet of the JSON structure that corresponds to the first (``candidate_workflow_1``) visualization above:
 
-.. code-block:: json
+.. code-block::
 
     {
     "workflow_name": "candidate_workflow_1",
@@ -199,7 +199,7 @@ The ``tooltip`` field is used to provide additional information about the benchm
 
 The following JSON structure corresponds to the ``candidate_workflow_4`` workflow visualization above:
 
-.. code-block:: json
+.. code-block::
 
     {
       "workflowName": "candidate_workflow_4",
@@ -293,6 +293,7 @@ The following JSON structure corresponds to the ``candidate_workflow_4`` workflo
                   "label": "ProteinProphet",
                   "value": "-",
                   "desirability": 0
+                  
                },
                {
                   "tool_name": "protXml2IdList",
