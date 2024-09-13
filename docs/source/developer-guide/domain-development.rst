@@ -21,7 +21,7 @@ Setup the Domain Description
 ============================
 
 
-1. Fork the `workflomics/containers <https://github.com/Workflomics/containers>`_ repository on GitHub. 
+1. Fork the `workflomics/containers <https://github.com/Workflomics/containers>`_ repository on GitHub and clone the repository to your local machine.
 2. Add a new domain folder under `domains <https://github.com/Workflomics/containers/tree/main/domains>`_`, e.g., `domains/my-domain`. The content could be copied from the `domains/template <https://github.com/Workflomics/containers/tree/main/template>`_, which provides a template for the domain files.
    1. The `domains/my-domain` folder should contain the following files (the file names do not have to be the same):
 
@@ -49,7 +49,8 @@ Setup the Domain Description
    
 4. If the tools do not have a corresponding CWL description available, you should create the folders under `containers/cwl-tools` and add the CWL files for the tools. The folders and CWL files should be named according to the tool name, e.g., `Comet/Comet.cwl`, `PeptideProphet/PeptideProphet.cwl`, and `XTandem/XTandem.cwl`. The CWL files should be annotated with the bio.tools annotations for inputs and outputs. The tool annotations in `tools.json` should be updated to point to the newly created CWL files. A detailed guide on how to create CWL files is available in Section `Configure CWL files <#configure-cwl-files>`_.
 5. Once the domain is configured, it should be locally tested using APE library. The APE library can be used to validate the domain configuration and check for any errors. Tutorial on how to use the APE library can be found on the `My first APE run <https://ape-framework.readthedocs.io/en/latest/docs/basics/gettingstarted.html>`_. The configuration file used in the example should be the `config.json` file you created in the `domains/my-domain` folder.
-6. If the domain configuration is correct, the domain should be added to the Workflomics database. The domain should be added to the Postgres database on the Workflomics platform. The instructions on how to add the domain to the database can be found in Section `Configure Workflomics <#configure-workflomics>`_.
+6. If the domain configuration is correct, a pull request should be created to merge the changes made to the forked repository. The pull request should be reviewed by the Workflomics developers team.
+7. Once the pull request is merged, the domain should be added to the Workflomics database. The domain is added by the Workflomics developers team, and initiated by the user who created the PR. The user should create an issue in the `Workflomics repository <https://github.com/Workflomics/workflomics-frontend/issues/new/choose>`_ to request the domain addition. The issue should contain the domain name and a brief description of the domain as well as the link to the configuration file - `config.json`. The instructions on how to add the domain to the database can be found in Section `Configure Workflomics <#configure-workflomics>`_.
 
 Configure CWL files
 ===================
@@ -72,9 +73,11 @@ Tutorial on how to create CWL files can be found on Elixir's `Training Platform 
 Configure Workflomics
 =====================
 
-The new domain should be added to the Postgres database on the Workflomics platform. The database can be updated from the `SQL script <https://github.com/Workflomics/workflomics-frontend/blob/main/database/03_import_data.sql>`_ available on the Workflomics platform. 
+Once the issue was created for adding a new domain to Workflomics, the new domain should be added to the Postgres database. The database can be updated from the `SQL script <https://github.com/Workflomics/workflomics-frontend/blob/main/database/03_import_data.sql>`_ that contains the domain information. 
 
-Once the `script <https://github.com/Workflomics/workflomics-frontend/blob/main/database/03_import_data.sql>`_ is updated and the new domain is added to the `public.domain` table, the Workflomics platform should be updated to reflect the new domain. Please contact the `Workflomics developers team <https://workflomics.readthedocs.io/en/domain-creation/#contents>`_ to update the platform.
+Once the `script <https://github.com/Workflomics/workflomics-frontend/blob/main/database/03_import_data.sql>`_ is updated to include the new domain in the `public.domain` table, and merged into the `main` branch, the Workflomics server should be updated to reflect the new domain annotations. 
+
+In case a user took the initiative of updating the `script`, please create a PR into the `main` and request a review from the Workflomics developers team. If you have any questions or need help, please contact the `Workflomics developers team <https://workflomics.readthedocs.io/en/domain-creation/#contents>`_.
 
 An administrator should be able to update the Workflomics platform to reflect the new domain. The new domain should be visible on the Workflomics platform, and the tools in the domain should be available for use in the workflow editor.
 
