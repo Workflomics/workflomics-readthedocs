@@ -10,6 +10,18 @@ Introduction
 
 The platform currently focuses on proteomics and plans to expand into other domains, such as metabolomics and genomics, to further support the life sciences community.
 
+Contributors
+************
+
+The project developed by the following team:
+
+* Vedran Kasalica (v.kasalica[at]esciencecenter.nl),
+* Peter Kok,
+* Nauman Ahmed,
+* Rob Marissen,
+* Magnus Palmblad,
+* Anna-Lena Lamprecht
+
 Contents
 --------
 
