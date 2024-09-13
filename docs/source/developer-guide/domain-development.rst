@@ -22,7 +22,8 @@ Setup the Domain Description
 
 
 1. Fork the `workflomics/containers <https://github.com/Workflomics/containers>`_ repository on GitHub and clone the repository to your local machine.
-2. Add a new domain folder under `domains <https://github.com/Workflomics/containers/tree/main/domains>`_`, e.g., `domains/my-domain`. The content could be copied from the `domains/template <https://github.com/Workflomics/containers/tree/main/template>`_, which provides a template for the domain files.
+2. Add a new domain folder under `domains <https://github.com/Workflomics/containers/tree/main/domains>`_, e.g., `domains/my-domain`. The content could be copied from the `domains/template <https://github.com/Workflomics/containers/tree/main/template>`_, which provides a template for the domain files.
+   
    1. The `domains/my-domain` folder should contain the following files (the file names do not have to be the same):
 
    .. code-block::
@@ -36,7 +37,7 @@ Setup the Domain Description
    3. `config.json`: The file contains the domain-specific metadata and configuration.  The `template` should provide most of the fields already defined, such as `ontology_path`, `ontologyPrefixIRI`, etc. The fields that should be updated are: `tool_annotations_path` and `constraints_path` (as they currently point to the template folder). In addition, `inputs` and `outputs` should be updated to reflect the domain-specific input and output types. For more information on the configuration options, see the `configuration documentation <https://ape-framework.readthedocs.io/en/latest/docs/specifications/domain.html#core-configuration>`_.
    4. `constraints.json`: The file contains the domain-specific constraints. This file could be included in the `config.json` file, or linked from the `config.json` file (as in this template). The constraints file should contain the domain-specific constraints. For more information on the constraints file format, see the `constraints documentation <https://ape-framework.readthedocs.io/en/latest/docs/specifications/constraints.html#constraint-templates>`_.
    
-3. The tools specified in the `tools.json` should link to the CWL descriptions in the `containers/cwl-tools <https://github.com/Workflomics/containers/tree/main/cwl-tools>`_ directory. The `cwl` field should point to the CWL file in the raw file within `cwl-tools` repository. You can always use the domains/template <https://github.com/Workflomics/containers/tree/main/template>`_ or the `proteomics domain <https://github.com/Workflomics/containers/blob/main/domains/proteomics/tools.json>`_ for reference. A snipped referencing the CWL fill is shown in the example below:
+3. The tools specified in the `tools.json` should link to the CWL descriptions in the `containers/cwl-tools <https://github.com/Workflomics/containers/tree/main/cwl-tools>`_ directory. The `cwl` field should point to the CWL file in the raw file within `cwl-tools` repository. You can always use the `domains/template <https://github.com/Workflomics/containers/tree/main/template>`_ or the `proteomics domain <https://github.com/Workflomics/containers/blob/main/domains/proteomics/tools.json>`_ for reference. A snipped referencing the CWL fill is shown in the example below:
 
 .. code-block::
 
