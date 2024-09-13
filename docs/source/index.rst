@@ -46,6 +46,8 @@ Contents
    developer-guide/installation
    developer-guide/domain-development
    developer-guide/standards
+   developer-guide/pubmetric
+   developer-guide/pubmetric_api
 
 .. toctree::
    :maxdepth: 2
