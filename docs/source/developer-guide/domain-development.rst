@@ -54,6 +54,7 @@ Setup the Domain Description
 7. Once the pull request is merged, the domain should be added to the Workflomics database. The domain is added by the Workflomics developers team, and initiated by the user who created the PR. The user should create an issue in the `Workflomics repository <https://github.com/Workflomics/workflomics-frontend/issues/new/choose>`_ to request the domain addition. The issue should contain the domain name and a brief description of the domain as well as the link to the configuration file - `config.json`. The instructions on how to add the domain to the database can be found in Section `Configure Workflomics <#configure-workflomics>`_.
 
 .. _configure-cwl-files:
+
 Configure CWL files
 ===================
 
@@ -73,6 +74,7 @@ Once the CWL files are added to the repository, the domain should be updated to 
 Tutorial on how to create CWL files can be found on Elixir's `Training Platform <https://tess.elixir-europe.org/materials/cwl-user-guide>`_.
 
 .. _configure-workflomics:
+
 Configure Workflomics
 =====================
 
