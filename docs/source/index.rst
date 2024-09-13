@@ -50,6 +50,7 @@ Contents
    This project is under active development. Features and documentation are subject to change.
 
 .. _contributors:
+
 Contributors
 ************
 
