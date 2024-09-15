@@ -54,11 +54,17 @@ Contents
 Contributors
 ************
 
-The project developed by the following team:
+
+The project was developed within the `Great Bake Off" of Bioinformatics Workflows <https://research-software-directory.org/projects/bakeoff>`_ project by the project's core team:
 
 * Vedran Kasalica (v.kasalica[at]esciencecenter.nl),
 * Peter Kok,
-* Nauman Ahmed,
 * Rob Marissen,
 * Magnus Palmblad,
 * Anna-Lena Lamprecht
+
+
+and the following contributors:
+* Nauman Ahmed,
+* Alma Nilsson,
+* Felipe Morato

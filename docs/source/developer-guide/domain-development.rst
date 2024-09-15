@@ -82,7 +82,7 @@ Once the issue was created for adding a new domain to Workflomics, the new domai
 
 Once the `script <https://github.com/Workflomics/workflomics-frontend/blob/main/database/03_import_data.sql>`_ is updated to include the new domain in the `public.domain` table, and merged into the `main` branch, the Workflomics server should be updated to reflect the new domain annotations. 
 
-In case a user took the initiative of updating the `script`, please create a PR into the `main` and request a review from the Workflomics developers team. If you have any questions or need help, please contact the `Workflomics developers team <https://workflomics.readthedocs.io/en/domain-creation/#contents>`_.
+In case a user took the initiative of updating the `script`, please create a PR into the `main` and request a review from the Workflomics developers team. If you have any questions or need help, please contact the `Workflomics developers team <https://workflomics.readthedocs.io/en/domain-creation/#contributors>`_.
 
 An administrator should be able to update the Workflomics platform to reflect the new domain. The new domain should be visible on the Workflomics platform, and the tools in the domain should be available for use in the workflow editor.
 
