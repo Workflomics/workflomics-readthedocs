@@ -4,12 +4,8 @@
 
 The repository is used to provide detailed documentation on how to use the Workflomics [web interface](https://github.com/Workflomics/workflomics-frontend) and its [ecosystem](https://github.com/Workflomics).
 
-This GitHub template includes fictional Python library
-with some basic Sphinx docs.
+Documentation is hosted at [workflomics.readthedocs.io](https://workflomics.readthedocs.io/).
 
-Read the tutorial here:
-
-https://docs.readthedocs.io/en/stable/tutorial/
 
 ## How to build the documentation locally
 
