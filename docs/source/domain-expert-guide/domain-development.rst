@@ -25,17 +25,18 @@ Setup the Domain Description
 2. Add a new domain folder under `domains <https://github.com/Workflomics/containers/tree/main/domains>`_, e.g., `domains/my-domain`. The content could be copied from the `domains/template <https://github.com/Workflomics/containers/tree/main/domains/template-domain>`_, which provides a template for the domain files.
    
    1. The `domains/my-domain` folder should contain the following files (the file names do not have to be the same):
-
-   .. code-block::
-
-      my-domain/
-      ├── tools.json
-      ├── config.json
-      └── constraints.json
    
-   2. **`tools.json`**: The file contains the bio.tools annotations for the tools in the domain. The `template` file contains tool annotations for the following tools: `Comet`, `PeptideProphet` and `ProteinProphet`. The file can be generated from `bio.tools <https://bio.tools>`_ annotations using the APE library. The easies way to generate a new `tools.json` file is to use the APE CLI (Command Line Interface). **The detailed guide on how to generate a new `tools.json` file can be found in the** `APE CLI documentation <https://ape-framework.readthedocs.io/en/v2.4/docs/developers/cli.html#convert-tools>`_.
-   3. **`config.json`**: The file contains the domain-specific metadata and configuration.  The `template` should provide most of the fields already defined, such as `ontology_path`, `ontologyPrefixIRI`, etc. The fields that should be updated are: `tool_annotations_path` and `constraints_path` (as they currently point to the template folder). In addition, `inputs` and `outputs` should be updated to reflect the domain-specific input and output types. For more information on the configuration options, see the `configuration documentation <https://ape-framework.readthedocs.io/en/latest/docs/specifications/domain.html#core-configuration>`_.
-   4. **`constraints.json`**: The file contains the domain-specific constraints. This file could be included in the `config.json` file, or linked from the `config.json` file (as in this template). The constraints file should contain the domain-specific constraints. For more information on the constraints file format, see the `constraints documentation <https://ape-framework.readthedocs.io/en/latest/docs/specifications/constraints.html#constraint-templates>`_.
+      .. code-block::
+
+         my-domain/
+         ├── tools.json
+         ├── config.json
+         └── constraints.json
+
+   2. **tools.json**: The file contains the bio.tools annotations for the tools in the domain. The `template` file contains tool annotations for the following tools: `Comet`, `PeptideProphet`, and `ProteinProphet`. Once you have a list of tools in mind, it is recommended to re-generate the `tools.json` file from existing bio.tools annotations using the APE CLI (Command Line Interface).The detailed guide on how to generate a new `tools.json` file can be found in the `APE CLI documentation <https://ape-framework.readthedocs.io/en/v2.4/docs/developers/cli.html#convert-tools>`_.
+   3. **config.json**: The file contains the domain-specific metadata and configuration.  The `template` should provide most of the fields already defined, such as `ontology_path`, `ontologyPrefixIRI`, etc. The fields that should be updated are: `tool_annotations_path` and `constraints_path` (as they currently point to the template folder). In addition, `inputs` and `outputs` should be updated to reflect the domain-specific input and output types. For more information on the configuration options, see the `configuration documentation <https://ape-framework.readthedocs.io/en/latest/docs/specifications/domain.html#core-configuration>`_.
+   4. **constraints.json**: The file contains the domain-specific constraints. This file could be included in the `config.json` file, or linked from the `config.json` file (as in this template). The constraints file should contain the domain-specific constraints. For more information on the constraints file format, see the `constraints documentation <https://ape-framework.readthedocs.io/en/latest/docs/specifications/constraints.html#constraint-templates>`_.
+   
    
 3. The tools specified in the `tools.json` should link to the CWL descriptions in the `containers/cwl-tools <https://github.com/Workflomics/containers/tree/main/cwl-tools>`_ directory. The `cwl` field should point to the CWL file in the raw file within `cwl-tools` repository. You can always use the `domains/template <https://github.com/Workflomics/containers/tree/main/domains/template-domain>`_ or the `proteomics domain <https://github.com/Workflomics/containers/blob/main/domains/proteomics/tools.json>`_ for reference. A snipped referencing the CWL fill is shown in the example below:
 

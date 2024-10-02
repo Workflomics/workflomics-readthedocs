@@ -35,7 +35,7 @@ It will be helpful to put the above command in a script, so you only need to fig
 3. Create the CWL annotation
 ----------------------------
 
-.. note::
+.. important::
 
    The initial template for the CWL file can be generated from existing bio.tools annotations using the `APE` command line interface. See the `APE pull-a-tool <https://ape-framework.readthedocs.io/en/v2.4/docs/developers/cli.html#>`_ documentation for more information. The generated CWL file annotates the expected inputs and outputs and should be used as a starting point and modified to fit the specific tool version and requirements.
 
