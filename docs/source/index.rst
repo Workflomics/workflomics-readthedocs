@@ -26,7 +26,13 @@ Contents
    workflomics-benchmarker/benchmarker-overview
    workflomics-benchmarker/benchmarker-installation
    workflomics-benchmarker/benchmarker-usage
-   
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Domain Expert Guide
+
+   workflomics-benchmarker/adding-tools
+
 .. toctree::
    :maxdepth: 2
    :caption: Developer Guide
