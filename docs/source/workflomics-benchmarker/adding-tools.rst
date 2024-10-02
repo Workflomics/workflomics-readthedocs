@@ -11,7 +11,7 @@ Search for the tool and the ways it is distributed. Some tools already provide a
 2. Run the tool inside the container
 ------------------------------------
 
-Chances are high that the tool or container has a specific way to be called, so here are some tips and tricks to try and get it running. When the tool finally produces the expected output at the desired location, you are ready to go to the next step.
+Chances are high that the tool or container has a specific way to be called, so here are some tips and tricks to try and get it running.
 
 To try whether a tool works inside a docker container, you can run a docker container interactively. For instance:
 
@@ -19,15 +19,17 @@ To try whether a tool works inside a docker container, you can run a docker cont
 
   docker run -it --rm \
     --entrypoint /bin/bash \
-    --mount=type=bind,source=/repos/containers/cwl/tools/Sage/,target=/data/ \
+    --mount=type=bind,source=/repos/containers/cwl-tools/Sage/test/data,target=/data/ \
     sage:latest 
 
-This will start a bash shell inside the container, where you can try to run the tool. It mounts the local directory to /data/ inside the container, so put required input files and configuration there. Make sure the tool executes correctly and produces the expected output. Sometimes, additional config files will be required or arguments need to be passed in a specific way. If things are not working, consider the following:
+This will start a bash shell inside the container, where you can try to run the tool. It mounts the local directory to /data/ inside the container, so put required input files and configuration there. Note that CWL runners will explicitly mount the input files, but mounting the directory can be useful for debugging.
+
+Make sure the tool executes correctly and produces the expected output. Sometimes, additional config files will be required or arguments need to be passed in a specific way. If things are not working, consider the following:
 
 - Check the version of the tool (usually with ``tool --version``).
 - Check the help of the tool (usually with ``tool --help``)
 
-It will be helpful to put the above command in a script, so you only need to figure out the correct command once.
+It will be helpful to put the above command in a script, so you only need to figure out the correct command once. When the tool finally produces the expected output at the desired location, you are ready to go to the next step.
 
 
 3. Create the CWL annotation
@@ -84,6 +86,9 @@ These are the most important parts of the CWL file:
       format: "http://edamontology.org/format_3247" # mzIdentML
       outputBinding:
         glob: /data/output.mzid
+
+The CWL file essentially describes one step from a workflow and we want to try whether it works as expected. The CWL file can be tested using the cwltool command line tool. For instance:
+
 
 3. Create a workflow
 --------------------
