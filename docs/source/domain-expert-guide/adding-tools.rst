@@ -35,6 +35,10 @@ It will be helpful to put the above command in a script, so you only need to fig
 3. Create the CWL annotation
 ----------------------------
 
+.. note::
+
+   The initial template for the CWL file can be generated from existing bio.tools annotations using the `APE` command line interface. See the `APE pull-a-tool <https://ape-framework.readthedocs.io/en/v2.4/docs/developers/cli.html#>`_ documentation for more information. The generated CWL file annotates the expected inputs and outputs and should be used as a starting point and modified to fit the specific tool version and requirements.
+
 These are the most important parts of the CWL file:
 
 - ``baseCommand``: The command to run the tool. This can be a list of strings, where the first string is the command and the rest are arguments. In practice though, especially when there are pre- or post-processing steps, a shell command is used and the actual command is in the ``valueFrom`` field of an argument. This requires ``ShellCommandRequirement`` to be specified. Also, the arguments passed to the command refer to the inputs that are defined further on in the CWL file.
@@ -44,7 +48,7 @@ These are the most important parts of the CWL file:
 
 .. code-block:: yaml
 
-  cwlVersion: v1.0
+  cwlVersion: v1.2
   label: Sage
   class: CommandLineTool
   baseCommand: ["/bin/bash", "-c"]
@@ -90,7 +94,13 @@ These are the most important parts of the CWL file:
 The CWL file essentially describes one step from a workflow and we want to try whether it works as expected. The CWL file can be tested using the cwltool command line tool. For instance:
 
 
-3. Create a workflow
+.. code-block:: bash
+
+  cwltool --validate path/to/cwlfile.cwl
+
+
+
+1. Create a workflow
 --------------------
 
 Create a workflow using the tool and test whether it runs.

@@ -31,14 +31,14 @@ Contents
    :maxdepth: 2
    :caption: Domain Expert Guide
 
-   workflomics-benchmarker/adding-tools
+   domain-expert-guide/adding-tools
+   domain-expert-guide/domain-development
 
 .. toctree::
    :maxdepth: 2
    :caption: Developer Guide
 
    developer-guide/installation
-   developer-guide/domain-development
    developer-guide/standards
    developer-guide/pubmetric
    developer-guide/pubmetric_api
