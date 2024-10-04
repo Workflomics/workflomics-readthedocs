@@ -1,108 +1,226 @@
-Domain Development
-##################
+Domain Development Guide
+########################
 
-This guide outlines the steps to add a domain to the Workflomics platform, and how to maintain the existing domains.
+This guide explains how to create and maintain a domain within the Workflomics platform. By following this step-by-step guide, you will learn how to configure a new domain, link it to CWL tool descriptions, and validate it using the APE library. Each step is broken down into detailed instructions for ease of use.
 
-Create New Domain
-*****************
+Overview of Steps
+=================
 
-The following steps describe how to create a new domain on the Workflomics platform. Creating a domain can be broken down into the following steps:
+1. **Clone the Workflomics Repository:** Set up your local environment by cloning the necessary repository.
+2. **Create a New Domain Folder:** Organize your new domain directory with the required configuration files.
+3. **Add Tools to Your Domain:** Include tools in your domain by reusing existing annotations or creating new ones.
+4. **Configure Domain Files:** Update the domain configuration files with metadata, inputs, outputs, and constraints.
+5. **Validate the Domain with APE Library:** Check your domain configuration for errors using the APE library.
+6. **Submit and Integrate the Domain:** Submit your domain to the Workflomics repository and update the database.
 
-1. Cloning the Workflomics annotations repository
-2. Configuring a new domain, including the domain configuration, constraints, and initial tool annotations.
-3. Include tools with existing CWL annotations and link the domain tools to their CWL descriptions
-4. Adding new tools and CWL descriptions that are currently missing in your domain
-5. Testing the domain configuration using the APE library
-6. Adding the domain to the Workflomics database
+Now, let’s go through each of these steps in detail.
 
-The following sections provide a detailed guide on how to create a new domain on the Workflomics platform.
+Step 1: Clone the Workflomics Repository
+========================================
 
-Setup the Domain Description
-============================
+To start, fork the `workflomics/tools-and-domains <https://github.com/Workflomics/tools-and-domains>`_ repository on GitHub (or create a new branch) and clone the forked repository to your local machine:
 
+.. code-block:: bash
 
-1. Fork the `workflomics/tools-and-domains <https://github.com/Workflomics/tools-and-domains>`_ repository on GitHub and clone the repository to your local machine.
-2. Add a new domain folder under `domains <https://github.com/Workflomics/tools-and-domains/tree/main/domains>`_, e.g., `domains/my-domain`. The content could be copied from the `domains/template <https://github.com/Workflomics/tools-and-domains/tree/main/domains/template-domain>`_, which provides a template for the domain files.
-   
-   - The `domains/my-domain` folder should contain the following files (the file names do not have to be the same):
-   
-      .. code-block::
+   git clone https://github.com/Workflomics/tools-and-domains.git
 
-         my-domain/
-         ├── tools.json
-         ├── config.json
-         └── constraints.json
+Navigate to the cloned directory:
 
-   - **tools.json**: The file contains the bio.tools annotations for the tools in the domain. The `template` file contains tool annotations for the following tools: `Comet`, `PeptideProphet`, and `ProteinProphet`. Once you have a list of tools in mind, it is recommended to re-generate the `tools.json` file from existing bio.tools annotations using the APE CLI (Command Line Interface).The detailed guide on how to generate a new `tools.json` file can be found in the `APE CLI documentation <https://ape-framework.readthedocs.io/en/v2.4/docs/developers/cli.html#convert-tools>`_.
-   - **config.json**: The file contains the domain-specific metadata and configuration.  The `template` should provide most of the fields already defined, such as `ontology_path`, `ontologyPrefixIRI`, etc. The fields that should be updated are: `tool_annotations_path` and `constraints_path` (as they currently point to the template folder). In addition, `inputs` and `outputs` should be updated to reflect the domain-specific input and output types. For more information on the configuration options, see the `configuration documentation <https://ape-framework.readthedocs.io/en/latest/docs/specifications/domain.html#core-configuration>`_.
-   - **constraints.json**: The file contains the domain-specific constraints. This file could be included in the `config.json` file, or linked from the `config.json` file (as in this template). The constraints file should contain the domain-specific constraints. For more information on the constraints file format, see the `constraints documentation <https://ape-framework.readthedocs.io/en/latest/docs/specifications/constraints.html#constraint-templates>`_.
-   
-   
-3. The tools specified in the `tools.json` should link to the CWL descriptions in the `tools-and-domains/cwl-tools <https://github.com/Workflomics/tools-and-domains/tree/main/cwl-tools>`_ directory. The `cwl` field should point to the CWL file in the raw file within `cwl-tools` repository. You can always use the `domains/template <https://github.com/Workflomics/tools-and-domains/tree/main/domains/template-domain>`_ or the `proteomics domain <https://github.com/Workflomics/tools-and-domains/blob/main/domains/proteomics/tools.json>`_ for reference. A snipped referencing the CWL fill is shown in the example below:
+.. code-block:: bash
+
+   cd tools-and-domains
+
+This repository contains templates and configuration files that will serve as a starting point for creating your new domain. In addition, the latest EDAM version (used to describe domain terminology, data types, formats, operations) and all the tools and domains hosted on the Workflomics platform are stored in this repository.
+
+Step 2: Create a New Domain Folder
+==================================
+
+Create a new domain folder within the `domains` directory. This folder will store all configurations and tool annotations for your domain. You can copy the structure of the `template-domain` folder:
+
+.. code-block:: bash
+
+   mkdir domains/my-domain
+   cp -r domains/template-domain/* domains/my-domain/
+
+Your domain folder should have the following structure (the specified file names are recommended but can be customized):
 
 .. code-block::
 
-   {
-      "id": "Comet",
-      "label": "Comet",
-      "implementation" : { "cwl_reference" : "https://raw.githubusercontent.com/Workflomics/t/main/cwl-tools/Comet/Comet.cwl"} ,
-      ...
-   }
+   my-domain/
+   ├── tools.json
+   ├── config.json
+   └── constraints.json
+
+**Explanation of Files:**
+
+- **`config.json`**: Defines domain-specific metadata and configuration. This includes paths, input and output types, and tool references.
+- **`tools.json`**: Contains bio.tools annotations for tools in your domain. You will populate this file with the list of tools used in the domain.
+- **`constraints.json`**: Specifies constraints for tools and workflows in your domain. These constraints can be included or linked in `config.json`.
+
+Step 3: Add Tools to Your Domain
+================================
+
+This section explains how to add tools to your domain, i.e., how to update the `tools.json` file with the bio.tools annotations and references to CWL descriptions for each tool (these CWL descriptions specify how the tool should be executed are are stored in the `tools-and-domains/cwl-tools <https://github.com/Workflomics/tools-and-domains/tree/main/cwl-tools>`_ directory). 
+To add tools to your domain, follow the process below to either reuse existing annotations from the `cwl-tools` repository or create new annotations if the tool is not yet included.
+
+1. **Check for Existing Tools in `cwl-tools`:**
+
+   - Begin by searching for the tool on `bio.tools <https://bio.tools/>`_ and note down its `biotoolsID`. For example, the `biotoolsID` for the tool `Comet <https://bio.tools/comet>`_ is `comet`, while for `CoMet <https://bio.tools/comet-universe>`_ it is `comet-universe`.
+  
+   .. note::
+      **How to obtain `biotoolsIDs`**
+
+      The `biotoolsID` for each tool can be obtained from bio.tools. For example, the `biotoolsID` for the tool `comet <https://bio.tools/comet>`_ is `comet`. It is visible in the URL of the tool page. Alternatively, you can use bio.tools REST API to fetch the `biotoolsID` for a tool, see `comet entry <https://bio.tools/api/tool/comet>`_.
+
+   - Use the `biotoolsID`` to check if the tool is already annotated in the `cwl-tools <https://github.com/Workflomics/tools-and-domains/tree/main/cwl-tools>`_ directory, where each tool is stored in a folder named after its `biotoolsID`. For example, the `Comet`` tool is annotated in the `cwl-tools/comet <https://github.com/Workflomics/tools-and-domains/tree/main/cwl-tools/comet>`_ directory.
    
-4. If the tools do not have a corresponding CWL description available, you should create the folders under `tools-and-domains/cwl-tools` and add the CWL files for the tools. The folders and CWL files should be named according to the tool name, e.g., `Comet/Comet.cwl`, `PeptideProphet/PeptideProphet.cwl`, and `XTandem/XTandem.cwl`. The CWL files should be annotated with the bio.tools annotations for inputs and outputs. The tool annotations in `tools.json` should be updated to point to the newly created CWL files. A detailed guide on how to create CWL files is available in :doc:`adding-tools`.
-5. Once the domain is configured, it should be locally tested using APE library. The APE library can be used to validate the domain configuration and check for any errors. Tutorial on how to use the APE library can be found on the `My first APE run <https://ape-framework.readthedocs.io/en/latest/docs/basics/gettingstarted.html>`_. The configuration file used in the example should be the `config.json` file you created in the `domains/my-domain` folder.
-6. If the domain configuration is correct, a pull request should be created to merge the changes made to the forked repository. The pull request should be reviewed by the Workflomics developers team.
-7. Once the pull request is merged, the domain should be added to the Workflomics database. The domain is added by the Workflomics developers team, and initiated by the user who created the PR. The user should create an issue in the `Workflomics repository <https://github.com/Workflomics/workflomics-frontend/issues/new/choose>`_ to request the domain addition. The issue should contain the domain name and a brief description of the domain as well as the link to the configuration file - `config.json`. The instructions on how to add the domain to the database can be found in Section `Configure Workflomics <#configure-workflomics>`_.
+   If the tool exists, simply copy the content from `cwl-tools/biotoolsID/biotoolsID.json` and paste it into the `your-domain/tools.json` file under your domain directory. This way, you can add tools without needing to modify or create any new CWL descriptions.
 
-.. _configure-cwl-files:
+   For example, here is the full annotation for the `Comet` tool:
 
-Configure CWL files
+   .. code-block:: json
+
+      {
+        "outputs": [
+          {
+            "format_1915": ["http://edamontology.org/format_3655"],
+            "data_0006": ["http://edamontology.org/data_0945"]
+          },
+          {
+            "format_1915": ["http://edamontology.org/format_3247"],
+            "data_0006": ["http://edamontology.org/data_0945"]
+          },
+          {
+            "format_1915": ["http://edamontology.org/format_3475"],
+            "data_0006": ["http://edamontology.org/data_0945"]
+          }
+        ],
+        "inputs": [
+          {
+            "format_1915": [
+              "http://edamontology.org/format_3244",
+              "http://edamontology.org/format_3654",
+              "http://edamontology.org/format_3651"
+            ],
+            "data_0006": ["http://edamontology.org/data_0943"]
+          },
+          {
+            "format_1915": ["http://edamontology.org/format_1929"],
+            "data_0006": ["http://edamontology.org/data_2976"]
+          }
+        ],
+        "taxonomyOperations": ["http://edamontology.org/operation_3646"],
+        "implementation": {
+          "cwl_reference": "https://raw.githubusercontent.com/Workflomics/tools-and-domains/refs/heads/main/cwl-tools/comet/comet.cwl"
+        },
+        "biotoolsID": "comet",
+        "label": "Comet",
+        "id": "Comet"
+      }
+
+   Double-check that the `cwl_reference` field is correct and points to the appropriate CWL file in the repository. The `cwl_reference` should be accessible and point to the raw file URL of the CWL description for this tool in the `cwl-tools` directory.
+
+2. **Adding New Tools from `bio.tools` Not Present in `cwl-tools`:**
+
+   If the tool is not already annotated in the `cwl-tools` repository, follow the instructions in the `Add New Tools to CWL` page, which explains how to create new CWL files and annotations for the tool.
+
+   Once you have added the new tool to `cwl-tools`, update your domain's `tools.json` file using the same process as above, linking to the new CWL file using the `cwl_reference` field.
+
+For further guidance on how to create new CWL files and annotations, refer to the `CWL user guide <https://tess.elixir-europe.org/materials/cwl-user-guide>`_.
+
+
+Step 4: Configure Domain Files
+==============================
+
+Edit `config.json`
+^^^^^^^^^^^^^^^^^^
+
+The `config.json` file contains most of the bioinformatics domain-specific metadata and configuration (e.g., path to the latest EDAM ontology, EDAM identifiers for root terminology - data format, data type, operation, etc.). You should update the `config.json` file  with your domain's specific configurations:
+
+- Update paths for `tool_annotations_path` and `constraints_path` to point to the correct files in your domain folder (paths can be local while you are testing the domain, but when making a PR the paths should point to the expected "raw" path on `main`, as used in the template).
+- Define `inputs` and `outputs` for the domain to reflect a demo example of the expected inputs and outputs for the tools in your domain. The terminology used adheres to EDAM classes and URIs (always use the latest EDAM version). As an example, the `config.json` provided in the template folder should contains `input` fields in the following format:
+
+.. code-block:: json
+
+   {
+      "inputs": [
+      {
+         "data_0006": ["data_0943"],
+         "format_1915": ["format_3244"]
+      },
+      {
+         "data_0006": ["data_2976"],
+         "format_1915": ["format_1929", "format_3654"]
+      }],
+   }
+
+This specifies that the workflow will accept two distinct inputs. The first one must be of data type (`data_0006`) - `Mass spectrum` (`data_0943`) and data format (`format_1915`) - `mzML` (`format_3244`). The second input must have data type (`data_0006`) - `Protein sequence` (`data_2976`), while data format (`format_1915`) specifies two possible allowed formats `FASTA` (`format_1929`) and `XML` (`format_3654`). The output fields should be defined in a similar manner following the same semantics, the only difference is that the `inputs` field should be replaced with `outputs`.
+
+For a full list of configurable options, see the `configuration documentation <https://ape-framework.readthedocs.io/en/latest/docs/specifications/domain.html#core-configuration>`_.
+
+Edit `tools.json`
+^^^^^^^^^^^^^^^^^
+
+The `tools.json` file holds the bio.tools annotations for all tools in your domain. If you are starting from scratch or updating existing annotations, use the APE CLI to generate the `tools.json` file:
+
+.. code-block:: bash
+
+   java -jar APE-2.4.0-executable.jar convert-tools ./toolIDsList.json
+
+Refer to the `APE CLI documentation <https://ape-framework.readthedocs.io/en/v2.4/docs/developers/cli.html#convert-tools>`_ for more details on generating tool annotations.
+
+
+Edit `constraints.json`
+^^^^^^^^^^^^^^^^^^^^^^^
+
+Modify the `constraints.json` file to include domain-specific constraints such as tool dependencies, data types, and workflow limitations. This file should be linked or referenced in `config.json` as needed.
+
+For more details on constraint formatting, see the `constraints documentation <https://ape-framework.readthedocs.io/en/latest/docs/specifications/constraints.html#constraint-templates>`_.
+
+
+
+Step 5: Validate the Domain with APE Library
+============================================
+
+After configuring the domain, validate the domain files using the APE library to check for errors:
+
+.. code-block:: bash
+
+   ape validate domains/my-domain/config.json
+
+This command will validate your `config.json` and related files, ensuring that all inputs, outputs, and constraints are correctly defined.
+
+Step 6: Submit and Integrate the Domain
+=======================================
+
+If the validation is successful, create a pull request to merge your changes into the Workflomics repository. The pull request should be reviewed and approved by the Workflomics development team.
+
+Once the pull request is merged:
+
+1. Create an issue in the `Workflomics repository <https://github.com/Workflomics/workflomics-frontend/issues/new/choose>`_ to request the addition of your domain to the database.
+2. Include the domain name, a brief description, and the link to your domain's `config.json` file.
+3. Update the database using the `SQL script <https://github.com/Workflomics/workflomics-frontend/blob/main/database/03_import_data.sql>`_ that contains the new domain information.
+
+The Workflomics development team will finalize the integration and update the Workflomics platform to include your domain.
+
+Configure CWL Files
 ===================
 
-The CWL files for the tools in the domain should be added to the `tools-and-domains/cwl-tools <https://github.com/Workflomics/tools-and-domains/tree/main/cwl-tools>`_ repository. Each tool should be annotated in a separate CWL file. The CWL files should be named according to the tool name, e.g., `comet.cwl`, `peptideprophet.cwl`, and `proteinprophet.cwl`. The CWL files should be annotated with the bio.tools annotations.
+CWL files for the tools in your domain should be added to the `cwl-tools` directory and annotated according to bio.tools standards. Ensure each tool has a separate CWL file named after the tool, such as `Comet.cwl`, `PeptideProphet.cwl`, etc.
 
-Once the CWL files are added to the repository, the domain should be updated to point to the correct CWL files. The CWL files should be linked in the `tools.json` file in the domain directory. The `cwl` field should point to the CWL file in the raw file within `cwl-tools` repository. You can always use the `domains/template <https://github.com/Workflomics/tools-and-domains/tree/main/domains/template-domain>`_ or the `proteomics domain <https://github.com/Workflomics/tools-and-domains/blob/main/domains/proteomics/tools.json>`_ for reference. A snipped referencing the CWL fill is shown in the example below:
+Once the CWL files are added, update `tools.json` to include the correct `cwl_reference` links.
 
-.. code-block::
-
-   {
-      "id": "Comet",
-      "label": "Comet",
-      "implementation" : { "cwl_reference" : "https://raw.githubusercontent.com/Workflomics/tools-and-domains/main/cwl-tools/Comet/Comet.cwl"} ,
-      ...
-   }
-
-Tutorial on how to create CWL files can be found on Elixir's `Training Platform <https://tess.elixir-europe.org/materials/cwl-user-guide>`_.
-
-.. _configure-workflomics:
+For more information on creating and formatting CWL files, refer to the Elixir `Training Platform <https://tess.elixir-europe.org/materials/cwl-user-guide>`_.
 
 Configure Workflomics
 =====================
 
-Once the issue was created for adding a new domain to Workflomics, the new domain should be added to the Postgres database. The database can be updated from the `SQL script <https://github.com/Workflomics/workflomics-frontend/blob/main/database/03_import_data.sql>`_ that contains the domain information. 
+To integrate a new domain into the Workflomics platform, ensure the domain configuration is included in the `public.domain` table of the Postgres database. This can be done using the SQL script provided in the repository:
 
-Once the `script <https://github.com/Workflomics/workflomics-frontend/blob/main/database/03_import_data.sql>`_ is updated to include the new domain in the `public.domain` table, and merged into the `main` branch, the Workflomics server should be updated to reflect the new domain annotations. 
+.. code-block:: sql
 
-In case a user took the initiative of updating the `script`, please create a PR into the `main` and request a review from the Workflomics developers team. If you have any questions or need help, please contact the `Workflomics developers team <https://workflomics.readthedocs.io/en/domain-creation/#contributors>`_.
+   INSERT INTO public.domain (name, description, config_path) VALUES ('my-domain', 'A new bioinformatics domain', 'domains/my-domain/config.json');
 
-An administrator should be able to update the Workflomics platform to reflect the new domain. The new domain should be visible on the Workflomics platform, and the tools in the domain should be available for use in the workflow editor.
+After updating the database, restart the Workflomics server to reflect the new domain changes.
 
-
-Update Existing Domain
-**********************
-
-This section describes how to update an existing domain on the Workflomics platform. 
-We distinguish between few types of updates:
-
-1. Adding a new tool to the domain
-2. Updating an existing tool in the domain
-3. Adding domain specific constraints
-
-Writing in progress.
-
-Add New Tool
-============
-
-To update the domain annotations you can u
-
-
+If you have any questions or need assistance, please contact the `Workflomics development team <https://workflomics.readthedocs.io/en/domain-creation/#contributors>`_.
