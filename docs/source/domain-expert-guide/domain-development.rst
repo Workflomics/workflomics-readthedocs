@@ -65,7 +65,7 @@ To add tools to your domain, follow the process below to either reuse existing a
 
 1. **Check for Existing Tools in `cwl-tools`:**
 
-   - Begin by searching for the tool on `bio.tools <https://bio.tools/>`_ and note down its `biotoolsID`. For example, the `biotoolsID` for the tool `Comet <https://bio.tools/comet>`_ is `comet`, while for `CoMet <https://bio.tools/comet-universe>`_ it is `comet-universe`.
+   - Begin by searching for the tool on `bio.tools <https://bio.tools/>`_ and note down its `biotoolsID`. For example, the `biotoolsID` for the tool `Comet <https://bio.tools/comet>`_ is `comet`, while for `CoMet <https://bio.tools/comet-universe>`__ it is `comet-universe`.
   
    .. note::
       **How to obtain `biotoolsIDs`**
