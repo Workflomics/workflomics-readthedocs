@@ -122,11 +122,11 @@ To add tools to your domain, follow the process below to either reuse existing a
 
 2. **Adding New Tools from `bio.tools` Not Present in `cwl-tools`:**
 
-   If the tool is not already annotated in the `cwl-tools` repository, follow the instructions in the `Add New Tools to CWL` page, which explains how to create new CWL files and annotations for the tool.
+   If the tool is not already annotated in the `cwl-tools` repository, follow the instructions in the :doc:`adding-tools` page, which explains how to create new CWL files and annotations for the tool.
 
-   Once you have added the new tool to `cwl-tools`, update your domain's `tools.json` file using the same process as above, linking to the new CWL file using the `cwl_reference` field.
+   Once you have added the new tool to `cwl-tools`, made a PR and merged the changes into the `main` branch, update your domain's `tools.json` file using the same process as above, linking to the new CWL file using the `cwl_reference` field.
 
-For further guidance on how to create new CWL files and annotations, refer to the `CWL user guide <https://tess.elixir-europe.org/materials/cwl-user-guide>`_.
+For additional guidance on how to create new CWL files and annotations, we refer to the `TESS CWL user guide <https://tess.elixir-europe.org/materials/cwl-user-guide>`_.
 
 
 Step 4: Configure Domain Files
@@ -161,7 +161,7 @@ For a full list of configurable options, see the `configuration documentation <h
 Edit `tools.json`
 ^^^^^^^^^^^^^^^^^
 
-The `tools.json` file holds the bio.tools annotations for all tools in your domain. If you are starting from scratch or updating existing annotations, use the APE CLI to generate the `tools.json` file:
+The `tools.json` file holds the bio.tools annotations for all tools in your domain. At this stage, you should have updated this file with the correct tool annotations and CWL references for each tool. If you however want to generate the domain from scratch (and not use the existing CWL files and provided json annotations), you can the APE CLI to generate the `tools.json` file from a list of bio.tools IDs.:
 
 .. code-block:: bash
 
@@ -173,7 +173,7 @@ Refer to the `APE CLI documentation <https://ape-framework.readthedocs.io/en/v2.
 Edit `constraints.json`
 ^^^^^^^^^^^^^^^^^^^^^^^
 
-Modify the `constraints.json` file to include domain-specific constraints such as tool dependencies, data types, and workflow limitations. This file should be linked or referenced in `config.json` as needed.
+Modify the `constraints.json` file to include domain-specific constraints such as tool dependencies, data types, and workflow limitations. This file can be referenced in `config.json`, as currently done in the template, or included directly in the `config.json` file under the `constraints` field.
 
 For more details on constraint formatting, see the `constraints documentation <https://ape-framework.readthedocs.io/en/latest/docs/specifications/constraints.html#constraint-templates>`_.
 
@@ -186,9 +186,9 @@ After configuring the domain, validate the domain files using the APE library to
 
 .. code-block:: bash
 
-   ape validate domains/my-domain/config.json
+   java -jar APE-2.4.0-executable.jar synthesis ./domains/my-domain/config.json
 
-This command will validate your `config.json` and related files, ensuring that all inputs, outputs, and constraints are correctly defined.
+This command will validate your `config.json` and related files, ensuring that all inputs, outputs, and constraints are correctly defined. In addition, the command will generate workflows that fit the configuration specified (inputs, outputs, constraints) and check for any errors or inconsistencies. Make sure that this configuration produces at least one valid workflow, as it will be used as a demo example for the domain on the Workflomics platform.
 
 Step 6: Submit and Integrate the Domain
 =======================================
