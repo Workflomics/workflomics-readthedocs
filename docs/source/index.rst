@@ -26,15 +26,51 @@ Contents
    workflomics-benchmarker/benchmarker-overview
    workflomics-benchmarker/benchmarker-installation
    workflomics-benchmarker/benchmarker-usage
-   
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Domain Expert Guide
+
+   domain-expert-guide/adding-tools
+   domain-expert-guide/domain-development
+
 .. toctree::
    :maxdepth: 2
    :caption: Developer Guide
 
-   basics/installation
-   basics/pubmetric
-   basics/pubmetric_api
+   developer-guide/installation
+   developer-guide/standards
+   developer-guide/pubmetric
+   developer-guide/pubmetric_api
+
+.. toctree::
+   :maxdepth: 2
+   :caption: Rational
+
+   rational/annotating-tools
+   rational/discussions
+   
 
 .. note::
 
    This project is under active development. Features and documentation are subject to change.
+
+.. _contributors:
+
+Contributors
+************
+
+
+The project was developed within the `Great Bake Off" of Bioinformatics Workflows <https://research-software-directory.org/projects/bakeoff>`_ project by the project's core team:
+
+* Vedran Kasalica (v.kasalica[at]esciencecenter.nl),
+* Peter Kok,
+* Rob Marissen,
+* Magnus Palmblad,
+* Anna-Lena Lamprecht
+
+
+and the following contributors:
+* Nauman Ahmed,
+* Alma Nilsson,
+* Felipe Morato
