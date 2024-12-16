@@ -8,7 +8,7 @@ Introduction
 
 **Workflomics** addresses the challenges faced by researchers dealing with large and complex datasets by facilitating the creation of optimal data analysis workflows. It integrates bioinformatics tools and metadata with technologies for automated workflow exploration and benchmarking. This innovative approach supports the development of advanced workflows in bioinformatics, particularly within the proteomics domain, enhancing scientific quality, robustness, reproducibility, FAIRness (Findability, Accessibility, Interoperability, and Reusability), and maintainability.
 
-The platform currently focuses on proteomics and plans to expand into other domains, such as metabolomics and genomics, to further support the life sciences community.
+The platform is currently demonstrated on `workflomics.org <https://workflomics.org>`_ with mass spectrometry-based proteomics as a use case (domain), with metabolomics and mass spectrometry imaging coming soon. However, the **Workflomics** platform itself is domain-agnostic, aiming to support the wider life sciences community.
 
 Contents
 --------
