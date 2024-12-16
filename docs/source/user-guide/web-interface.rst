@@ -35,7 +35,7 @@ The "Explore" option allows you to specify the domain of your research and the d
 Choose the Domain
 =================
 
-The first step in generating workflows is to select the domain of your research. Workflomics currently supports only the proteomics domain. By specifying the domain, you focus the workflow generation process on the most relevant tools and methods for your research area.
+The first step in generating workflows is to select the domain of your research. The Workflomics instance on `workflomics.org <https://workflomics.org>`_ currently only implements the proteomics domain as an example. By specifying the domain, you focus the workflow generation process on the most relevant tools and methods for your research area.
 
 .. figure:: ./screenshots/domain.png
    :align: center
@@ -62,7 +62,7 @@ Based on the problem description, the inputs specified are **Mass spectrum** in 
 Specify Constraints
 ===================
 
-Constraints enable you to refine your workflow search by setting specific requirements, such as including or excluding certain tools or operations from a drop-down menu. Here, a "tool" refers to a specific software tool, often a single command on a command line. An "operation," on the other hand, refers to an EDAM operation, which is a more abstract concept that can be implemented by various tools and other operations within a hierarchical structure. This approach lets you enforce specific characteristics in the generated workflows without needing to explicitly mention particular tools.
+Constraints enable you to refine your workflow search by setting specific requirements, such as including or excluding certain tools or operations from a drop-down menu. Here, a "tool" refers to a specific software tool, often a single command on a command line. An "operation," on the other hand, refers to an EDAM operation, which is a more abstract concept that can be implemented by various tools and have defined relationships with other operations within a hierarchical structure (e.g. *Tag-based peptide identification* is a *Peptide identification*). This allow you to require specific functionality of the generated workflows without explicitly mentioning particular tools.
 
 .. figure:: ./screenshots/constraints.png
    :align: center
