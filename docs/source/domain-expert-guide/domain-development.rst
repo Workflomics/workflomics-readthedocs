@@ -70,7 +70,7 @@ To add tools to your domain, follow the process below to either reuse existing a
    .. note::
       **How to obtain `biotoolsIDs`**
 
-      The `biotoolsID` for each tool can be obtained from bio.tools. For example, the `biotoolsID` for the tool `comet <https://bio.tools/comet>`_ is `comet`. It is visible in the URL of the tool page. Alternatively, you can use bio.tools REST API to fetch the `biotoolsID` for a tool, see `comet entry <https://bio.tools/api/tool/comet>`_.
+      The `biotoolsID` for each tool can be obtained from bio.tools. It is visible in the URL of the tool page. Alternatively, you can use bio.tools REST API to fetch the `biotoolsID` for a tool. For example, see the API call for the `comet entry <https://bio.tools/api/tool/comet>`_.
 
    - Use the `biotoolsID`` to check if the tool is already annotated in the `cwl-tools <https://github.com/Workflomics/tools-and-domains/tree/main/cwl-tools>`_ directory, where each tool is stored in a folder named after its `biotoolsID`. For example, the `Comet`` tool is annotated in the `cwl-tools/comet <https://github.com/Workflomics/tools-and-domains/tree/main/cwl-tools/comet>`_ directory.
    
