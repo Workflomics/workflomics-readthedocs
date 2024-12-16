@@ -7,7 +7,7 @@ This section guides you through the process of using Workflomics, from accessing
 Accessing Workflomics
 *********************
 
-To begin exploring the capabilities of Workflomics, you can deploy your own instance of Workflomics (see the `intructions <https://workflomics.readthedocs.io/en/update_tutorial/basics/installation.html>`_) or visit the demo:
+To begin exploring the capabilities of Workflomics, you can deploy your own instance of Workflomics (see the `instructions <https://workflomics.readthedocs.io/en/update_tutorial/basics/installation.html>`_) or visit the demo:
 
 - **Live Demo**: `Workflomics Live Demo <http://145.38.190.48/>`_
 
