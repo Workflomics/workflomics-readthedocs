@@ -99,8 +99,25 @@ The CWL file essentially describes one step from a workflow and we want to try w
   cwltool --validate path/to/cwlfile.cwl
 
 
+Adding a library as a tool
+==========================
 
-1. Create a workflow
---------------------
+Sometimes a tool is not a standalone executable, but a library for a programming language. In this case, the tool can be wrapped in a script that calls the library. These can be R, Python, Java, or any other language. The script should be able to run the library with the correct arguments and produce the expected output. The script can be run in a docker container that contains the required library, environment, and dependencies. The CWL file should then call the script in the same way as a standalone executable.
 
-Create a workflow using the tool and test whether it runs.
+
+Creating an R-based tool
+-------------------------
+
+1. Create the executable R script
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+2. Pick a base image
+~~~~~~~~~~~~~~~~~~~~
+
+3. Test the tool
+~~~~~~~~~~~~~~~~
+
+4. Write the CWL file
+~~~~~~~~~~~~~~~~~~~~~
+
