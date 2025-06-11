@@ -6,7 +6,40 @@ Adding a new tool
 
 Search for the tool and the ways it is distributed. Some tools already provide a docker image that can be used to run it. Sometimes, third parties will provide a docker image, but in practice these are not consistently updated, so be sure to check the version of the tool. Other tools will be available in a "generic" image containing multiple tools. If no suitable image can be found, create one yourself that wraps the tool, taking into account its dependencies and licenses.
 
-** TODO: Create a Dockerfile **
+**Example Dockerfile: MS Amanda**
+
+If no suitable image is found, create one. For example, to package MS Amanda:
+
+.. code-block:: docker
+
+  FROM ubuntu:latest
+
+  # Install dependencies
+  RUN apt-get update && apt-get install -y \
+      libc6-dev \
+      libgcc1 \
+      libgssapi-krb5-2 \
+      libicu-dev \
+      libssl-dev \
+      libstdc++6 \
+      zlib1g \
+      && rm -rf /var/lib/apt/lists/*
+
+  # Set working directory
+  WORKDIR /msamanda
+
+  # Copy MS Amanda binaries (e.g., MSAmanda, dependent files)
+  COPY ./bin /msamanda
+
+  # Make MS Amanda executable
+  RUN chmod +x /msamanda/MSAmanda
+
+  # Optional entrypoint
+  ENTRYPOINT ["/msamanda/MSAmanda"]
+
+This example assumes the MS Amanda binary and dependencies are placed in a local `bin/` directory. See:
+https://github.com/Workflomics/tools-and-domains/tree/main/cwl-tools/ms_amanda/docker
+
 
 2. Run the tool inside the container
 ------------------------------------
@@ -49,47 +82,60 @@ These are the most important parts of the CWL file:
 .. code-block:: yaml
 
   cwlVersion: v1.2
-  label: Sage
+  label: Sage-proteomics
   class: CommandLineTool
   baseCommand: ["/bin/bash", "-c"]
   arguments:
     - valueFrom: >
-        "/msamanda/MSAmanda -s $(inputs.MS_Amanda_in_1.path) \
-        -d $(inputs.MS_Amanda_in_2.path) \
-        -e $(inputs.Settings)"
+        "sage -o /data/output -f $(inputs.Sage_in_2.path) \
+        $(inputs.Configuration.path) $(inputs.Sage_in_1.path) && \
+        /data/sage_TSV_to_mzIdentML.sh /data/output/results.sage.tsv"
       shellQuote: false
   requirements:
     ShellCommandRequirement: {}
     DockerRequirement:
-      dockerPull: workflomics/msamanda:latest
-      dockerOutputDirectory: /data/output
+      dockerPull: workflomics/sage:latest
+      dockerOutputDirectory: /data
+    InitialWorkDirRequirement:
+      listing:
+        - class: File
+          location: sage_TSV_to_mzIdentML.sh
+          basename: sage_TSV_to_mzIdentML.sh
+
+  $namespaces:
+    edam: http://edamontology.org/
+
+  intent:
+    - http://edamontology.org/operation_3631  # Peptide identification
+    - http://edamontology.org/operation_3633  # Retention time prediction
+    - http://edamontology.org/operation_2428  # Validation
 
   inputs:
-    MS_Amanda_in_1:
+    Sage_in_1:
       type: File
-      format: "http://edamontology.org/format_3244" # mzML
-      inputBinding:
-        position: 1
-        prefix: -s
-    MS_Amanda_in_2:
+      format: edam:format_3244  # mzML
+      edam:data_0006: edam:data_0943  # Mass spectrum
+    Sage_in_2:
       type: File
-      format: "http://edamontology.org/format_1929" # FASTA
-      inputBinding:
-        position: 2
-        prefix: -d
-    Settings:
-      type: string
-      default: /msamanda/settings.xml
-      inputBinding:
-        position: 3
-        prefix: -e
+      format: edam:format_1929  # FASTA
+      edam:data_0006: edam:data_2976  # Protein sequence
+
+    Configuration:
+      type: File
+      format: edam:format_3464  # JSON
+      default:
+        class: File
+        format: edam:format_3464  # JSON
+        location: https://raw.githubusercontent.com/Workflomics/tools-and-domains/main/cwl-tools/Sage-proteomics/config.json
 
   outputs:
-    MS_Amanda_out_1:
+    Sage_out_1:
       type: File
-      format: "http://edamontology.org/format_3247" # mzIdentML
+      format: edam:format_3247  # mzIdentML
+      edam:data_0006: edam:data_0945  # Peptide identification
       outputBinding:
-        glob: /data/output.mzid
+        glob: /data/output/results.sage.mzid
+
 
 The CWL file essentially describes one step from a workflow and we want to try whether it works as expected. The CWL file can be tested using the cwltool command line tool. For instance:
 

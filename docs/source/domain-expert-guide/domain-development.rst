@@ -57,6 +57,10 @@ Your domain folder should have the following structure (the specified file names
 - **`tools.json`**: Contains bio.tools annotations for tools in your domain. You will populate this file with the list of tools used in the domain.
 - **`constraints.json`**: Specifies constraints for tools and workflows in your domain. These constraints can be included or linked in `config.json`.
 
+**Important:**
+- URLs in the `config.json` and `tools.json` files should point to the raw files in your branch of the repository while testing. This ensures that the Workflomics platform can access the correct files when rendering the domain. To do that just update the `YOUR-BRANCH-NAME` placeholder in the URLs to your branch name. For example, if your branch is `my-domain`, the URL should look like this:
+   `"tool_annotations_path": "https://raw.githubusercontent.com/Workflomics/tools-and-domains/refs/heads/YOUR-BRANCH-NAME/domains/proteomics_new/tools.json"``
+
 Step 3: Add Tools to Your Domain
 ================================
 
@@ -74,13 +78,29 @@ To add tools to your domain, follow the process below to either reuse existing a
 
    - Use the `biotoolsID`` to check if the tool is already annotated in the `cwl-tools <https://github.com/Workflomics/tools-and-domains/tree/main/cwl-tools>`_ directory, where each tool is stored in a folder named after its `biotoolsID`. For example, the `Comet`` tool is annotated in the `cwl-tools/comet <https://github.com/Workflomics/tools-and-domains/tree/main/cwl-tools/comet>`_ directory.
    
-   If the tool exists, simply copy the content from `cwl-tools/biotoolsID/biotoolsID.json` and paste it into the `your-domain/tools.json` file under your domain directory. This way, you can add tools without needing to modify or create any new CWL descriptions.
+   If the tool exists, simply copy the content from `cwl-tools/biotoolsID/tool.json` and paste it into the `your-domain/tools.json` file under your domain directory. This way, you can add tools without needing to modify or create any new CWL descriptions.
 
-   For example, here is the full annotation for the `Comet` tool:
+   For example, here is the reference annotation for the `Comet` tool:
 
    .. code-block:: json
 
       {
+      "type": "CWL_ANNOTATION",
+      "cwl_reference": "https://raw.githubusercontent.com/Workflomics/tools-and-domains/refs/heads/new_ape_annotations/cwl-tools/comet/comet.cwl"
+      }
+   
+   This assumes that the `cwl-tools/comet/comet.cwl` file exists and contains the CWL description for the `Comet` tool. See example of the semantically annotated CWL file for the `Comet` tool `semantic CWL annotation <https://workflomics.readthedocs.io/en/ape-v2.5-update/domain-expert-guide/adding-tools.html#create-the-cwl-annotation>`_.
+
+
+   Double-check that the `cwl_reference` field is correct and points to the appropriate CWL file in the repository. The `cwl_reference` should be accessible and point to the raw file URL of the CWL description for this tool in the `cwl-tools` directory.
+
+
+   Alternatively, instead of using `CWL_ANNOTATION` inside `tools.json` referencing semantic CWL annotations, you can use the `APE_ANNOTATION` type, which is a more generic annotation type that does not require a specific CWL file. This is useful if you want to add a tool to the domain without providing a CWL description (which would make the tool non-executable). More information will be presented in the "Create non-executable domain" section. The `APE_ANNOTATION` type can be used as follows:
+
+   .. code-block:: json
+
+      {
+         "type": "APE_ANNOTATION",
         "outputs": [
           {
             "format_1915": ["http://edamontology.org/format_3655"],
@@ -118,7 +138,6 @@ To add tools to your domain, follow the process below to either reuse existing a
         "id": "Comet"
       }
 
-   Double-check that the `cwl_reference` field is correct and points to the appropriate CWL file in the repository. The `cwl_reference` should be accessible and point to the raw file URL of the CWL description for this tool in the `cwl-tools` directory.
 
 2. **Adding New Tools from `bio.tools` Not Present in `cwl-tools`:**
 
@@ -161,11 +180,11 @@ For a full list of configurable options, see the `configuration documentation <h
 Edit `tools.json`
 ^^^^^^^^^^^^^^^^^
 
-The `tools.json` file holds the bio.tools annotations for all tools in your domain. At this stage, you should have updated this file with the correct tool annotations and CWL references for each tool. If you however want to generate the domain from scratch (and not use the existing CWL files and provided json annotations), you can the APE CLI to generate the `tools.json` file from a list of bio.tools IDs.:
+The `tools.json` file holds the bio.tools annotations for all tools in your domain. At this stage, you should have updated this file with the correct tool annotations and CWL references for each tool. If you however want to generate the non-executable domain from scratch (and not use the existing CWL files and provided json annotations), you can the APE CLI to generate the `tools.json` file from a list of bio.tools IDs.:
 
 .. code-block:: bash
 
-   java -jar APE-2.4.0-executable.jar convert-tools ./toolIDsList.json
+   java -jar APE-2.5.2-executable.jar convert-tools ./toolIDsList.json
 
 Refer to the `APE CLI documentation <https://ape-framework.readthedocs.io/en/v2.4/docs/developers/cli.html#convert-tools>`_ for more details on generating tool annotations.
 
@@ -186,7 +205,7 @@ After configuring the domain, validate the domain files using the APE library to
 
 .. code-block:: bash
 
-   java -jar APE-2.4.0-executable.jar synthesis ./domains/my-domain/config.json
+   java -jar APE-2.5.2-executable.jar synthesis ./domains/my-domain/config.json
 
 This command will validate your `config.json` and related files, ensuring that all inputs, outputs, and constraints are correctly defined. In addition, the command will generate workflows that fit the configuration specified (inputs, outputs, constraints) and check for any errors or inconsistencies. Make sure that this configuration produces at least one valid workflow, as it will be used as a demo example for the domain on the Workflomics platform.
 
