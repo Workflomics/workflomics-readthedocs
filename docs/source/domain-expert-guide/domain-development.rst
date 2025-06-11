@@ -186,7 +186,7 @@ The `tools.json` file holds the bio.tools annotations for all tools in your doma
 
    java -jar APE-2.5.2-executable.jar convert-tools ./toolIDsList.json
 
-Refer to the `APE CLI documentation <https://ape-framework.readthedocs.io/en/v2.4/docs/developers/cli.html#convert-tools>`_ for more details on generating tool annotations.
+Download the latest version of `APE-2.5.2-executable.jar <https://repo1.maven.org/maven2/io/github/sanctuuary/APE/2.5.2/APE-2.5.2-executable.jar>`_ . We refer to the `APE CLI documentation <https://ape-framework.readthedocs.io/en/v2.4/docs/developers/cli.html#convert-tools>`_ for more details on generating tool annotations.
 
 
 Edit `constraints.json`

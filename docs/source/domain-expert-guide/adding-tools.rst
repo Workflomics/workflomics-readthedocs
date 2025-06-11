@@ -65,19 +65,35 @@ Make sure the tool executes correctly and produces the expected output. Sometime
 It will be helpful to put the above command in a script, so you only need to figure out the correct command once. When the tool finally produces the expected output at the desired location, you are ready to go to the next step.
 
 
-3. Create the CWL annotation
-----------------------------
+3. Create a semantically annotated CWL file
+-------------------------------------------
 
 .. important::
 
    The initial template for the CWL file can be generated from existing bio.tools annotations using the `APE` command line interface. See the `APE pull-a-tool <https://ape-framework.readthedocs.io/en/v2.4/docs/developers/cli.html#>`_ documentation for more information. The generated CWL file annotates the expected inputs and outputs and should be used as a starting point and modified to fit the specific tool version and requirements.
 
-These are the most important parts of the CWL file:
+ Common Workflow Language (CWL) file formally describes how to run a computational tool. At minimum, a CWL file must clearly specify:
 
-- ``baseCommand``: The command to run the tool. This can be a list of strings, where the first string is the command and the rest are arguments. In practice though, especially when there are pre- or post-processing steps, a shell command is used and the actual command is in the ``valueFrom`` field of an argument. This requires ``ShellCommandRequirement`` to be specified. Also, the arguments passed to the command refer to the inputs that are defined further on in the CWL file.
-- ``DockerRequirement``: This is where the Docker image is defined. The ``dockerPull`` field should contain the name of the image, and the ``dockerOutputDirectory`` field should contain the directory where the output files are written to. The CWL runner will mount this directory to the host, so the files can be accessed after the run. Alternatively, if a docker image is not available, a Dockerfile can be specified inline in the ``dockerFile`` field. In that case, the docker image will be built locally before the tool is run.
-- The inputs: specification of the inputs, including the type and format. The inputBinding field specifies how the input should be passed to the command.
-- The outputs: specification of the outputs, including the type and format. The outputBinding field specifies how the output should be collected from the command, for instance by globbing a file.
+- **baseCommand**: The executable or command-line invocation.
+- **inputs**: Files or parameters needed by the tool, including type and format.
+- **outputs**: Result files produced by the tool, including type and retrieval method.
+
+Additionally, CWL often specifies:
+
+- **DockerRequirement**: A Docker image (`dockerPull`) containing the tool and its dependencies, and a directory for output (`dockerOutputDirectory`).
+- **ShellCommandRequirement**: Enables complex shell commands within CWL (`valueFrom`).
+
+In our approach, we extend basic CWL with semantic annotations to facilitate automated workflow composition. We incorporate the EDAM ontology to specify the computational purpose (`intent`), data types, and formats clearly and consistently. Specifically, we add:
+
+- **intent**: EDAM `operation` terms (e.g., peptide identification) explicitly describing the tool's computational function.
+- **Data types**: EDAM `data` terms next to each input/output, starting from a general root (`edam:data_0006`) refined into specific types.
+- **Data formats**: EDAM `format` annotations precisely identifying file formats.
+
+To keep annotations concise, we declare an EDAM namespace prefix under `$namespaces`.
+
+This file can be automatically generated from the `bio.tools` annotations using the `APE pull-a-tool <https://ape-framework.readthedocs.io/en/v2.4/docs/developers/cli.html#>`_ command line interface (e.g, `java -jar APE-2.5.2-executable.jar pull-a-tool Sage-proteomics`). The generated file will contain the basic structure and annotations, which can then be modified to fit the specific tool version and requirements.
+
+Here's a complete annotated example for the `Sage` tool, which performs peptide identification and retention time prediction:
 
 .. code-block:: yaml
 
