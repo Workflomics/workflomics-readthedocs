@@ -161,6 +161,29 @@ The CWL file essentially describes one step from a workflow and we want to try w
   cwltool --validate path/to/cwlfile.cwl
 
 
+4. Set up automatic testing for the tool (optional, recommended)
+-------------------------------------------------------------
+
+After the tool has been successfully added and the CWL file created, it is recommended to add automated testing. To enable automated continuous integration (CI) testing via GitHub actions:
+
+- Create a folder named ``test`` within your tool's directory.
+- Inside this ``test`` folder, add two files:
+
+  1. ``input.yml``: a YAML file specifying inputs for the CWL file.
+  2. ``run-cwl.sh``: a bash script that executes the CWL tool with the provided inputs.
+
+Example content of ``run-cwl.sh``:
+
+.. code-block:: bash
+
+  #!/bin/bash
+  cwltool --outdir output ../your_tool.cwl ./input.yml
+
+Replace ``your_tool.cwl`` with the name of your actual CWL file.
+
+Once these files are in place, opening a pull request (PR) will trigger the GitHub Actions CI pipeline to run the provided test automatically, verifying the tool's functionality.
+
+
 Adding a library as a tool
 ==========================
 
