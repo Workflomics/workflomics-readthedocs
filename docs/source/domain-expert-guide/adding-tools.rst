@@ -99,8 +99,41 @@ The CWL file essentially describes one step from a workflow and we want to try w
   cwltool --validate path/to/cwlfile.cwl
 
 
+Adding a library as a tool
+==========================
 
-1. Create a workflow
---------------------
+Sometimes a tool is not a standalone executable, but a library for a programming language. In this case, the tool can be wrapped in a script that calls the library. These can be R, Python, Java, or any other language. The script should be able to run the library with the correct arguments and produce the expected output. The script can be run in a docker container that contains the required library, environment, and dependencies. The CWL file should then call the script in the same way as a standalone executable.
 
-Create a workflow using the tool and test whether it runs.
+
+Creating an R-based tool
+-------------------------
+
+1. Create the executable R script
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+Since many R packages only provide function calls, write a simple R script(e.g., run_mytool.R)
+that accepts command-line arguments(via commandArgs(trailingOnly = TRUE)) and then calls the package's functions. 
+Set this script as an executable in the Dockerfile and optionally specify it under ENTRYPOINT.
+
+2. Pick a base image
+~~~~~~~~~~~~~~~~~~~~
+
+A common choice is the rocker family(e.g., rocker/r-base:4.2.0), which ensures a functional 
+R environment. 
+
+First, we suggest finding containers in biocontainers or docker hub. If there is no container for 
+your tool, creating a dockerfile is needed. In your Dockerfile, use ``apt-get install`` for 
+system libraries(e.g., libxml2-dev) and ``R -e"install.packages(...)"`` or ``BiocManager::install(...)`` 
+for R packages.
+
+3. Test the tool
+~~~~~~~~~~~~~~~~
+
+Launch the container in interactive mode by ``docker run -it ...`` to ensure the R script 
+runs correctly and that all libraries are installed. 
+
+4. Write the CWL file
+~~~~~~~~~~~~~~~~~~~~~
+
+In the `` baseCommand``, refer to ["Rscript", "/path/to/run_script.R"]. Define your inputs 
+and outputs according to the script's parameters. 
